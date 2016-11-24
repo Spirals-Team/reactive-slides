@@ -13,3 +13,7 @@ server.pid
 *.eml
 /dist/
 .cache
+
+.idea/
+target/
+logs/
