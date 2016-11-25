@@ -13,6 +13,7 @@ A web framework for building interactive presentations
 -- Don't work with the activator ui  
 -- The command '$ activator clean stage' can be useful to recompile  
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 - Pour lancer le serveur :  
 -- [Play with activator](https://www.playframework.com/download) est nécessaire, fonctionne actuellement avec Play 2.5.4 et activator 1.3.12 qui requiert le JDK 1.8  
