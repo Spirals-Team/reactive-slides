@@ -4,6 +4,11 @@ object IndexView {
   import scalatags.Text.all._
   import scalatags.Text.tags2.section
   import scalatags.Text.tags2.title
+  import scalatags._
+
+  // ---------------------------------------------------------------------------------------
+  // ----------------------------------- Définition du DSL - Début -----------------------------------
+  // ---------------------------------------------------------------------------------------
 
   def presentationTitle = "Présentation exemple avec reveal.js"
   def presentation(titleText: String, theme: String, array: scalatags.Text.Modifier*) = // Ne pas renommer array en content, provoque un bug
@@ -52,6 +57,18 @@ object IndexView {
   def textLine(content: scalatags.Text.Modifier*) =
     p(content)
 
+  def textLineFragment(content: scalatags.Text.Modifier*) =
+    p(attr("class"):="fragment",content)
+
+  def textFragment(content: scalatags.Text.Modifier*) =
+    span(attr("class"):="fragment", content)
+
+  def italic(content: String) =
+    em(content)
+
+  def bold(content: String) =
+    strong(content)
+
   def emptyLine =
     br
 
@@ -79,34 +96,194 @@ object IndexView {
   def tableBox(content: scalatags.Text.Modifier*) =
     td(content)
 
+  def linkURL(content: String) =
+    attr("href"):=content
+
+  def source(content: String) =
+    attr("src"):=content
+
+  def codeQuote(content: String) =
+    pre(
+      code(
+        attr("data-trim"):="data-trim",
+        attr("data-noescape"):="data-noescape",
+        content
+      )
+    )
+
+  // ---------------------------------------------------------------------------------------
+  // ----------------------------------- Définition du DSL - Fin -----------------------------------
+  // ---------------------------------------------------------------------------------------
+
+
   def apply(title: String) = {
-    presentation(title, "blood",
+    presentation(title, "black",
 
       slide(
-        title1("Welcome")
+        title1("Reveal.js"),
+        title3("The HTML Presentation Framework")
+      ),
+
+      slide(
+        title2("Hello There"),
+        textLine("reveal.js enables you to create beautiful interactive slide decks using HTML. This presentation will show you examples of what it can do.")
+      ),
+
+      slide(
+        slide(
+          title2("Vertical Slides"),
+          textLine("Slides can be nested inside each other."),
+          textLine("Use the ", italic("Space")," key to navigate through all slides."),
+          emptyLine(),
+          alink(
+            attr("class"):="navigate-down",
+            attr("enabled"):="enabled",
+            attr("href"):="#",
+            img(
+              attr("alt"):="Down arrow",
+              source("https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png")
+            )
+          )
+        ),
+        slide(
+          title2("Basement level 1"),
+          textLine("Nested slides are useful for adding additional detail underneath a high level horizontal slide.")
+        ),
+        slide(
+          title2("Basement level 2"),
+          textLine("That's it, time to go back up."),
+          emptyLine(),
+          alink(
+            linkURL("#/2"),
+            img(
+              attr("alt"):="Up arrow",
+              attr("style"):="transform: rotate(180deg);",
+              source("https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png")
+            )
+          )
+        )
+      ),
+
+      slide(
+        title2("Slides"),
+        textLine(
+          "Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it out at ",
+          alink(linkURL("http://slides.com"), attr("target"):="_blank","http://slides.com"),
+          "."
+        )
+      ),
+
+      slide(
+        title2("Touch Optimized"),
+        textLine("Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.")
+      ),
+
+      slide(
+        title2("Point of View"),
+        textLine("Press ", bold("ESC"), " to enter the slide overview."),
+        textLine(
+          "Hold down alt and click on any element to zoom in on it using ",
+          alink(linkURL("http://lab.hakim.se/zoom-js"), "zoom.js"),
+          ". Alt + Click anywhere to zoom back out."
+        )
+      ),
+
+      slide(
+        title2("Mardown support"),
+        textLine(
+          "Write content using inline or external Markdown. Instructions and more info available in the ",
+          alink(
+            linkURL("https://github.com/hakimel/reveal.js#markdown"),
+            "readme"
+          ),
+          "."
+        ),
+        codeQuote("<section data-markdown>## Markdown support. Write content using inline or external Markdown. Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).</section>")
+      ),
+
+      slide(
+        title2("Fragments"),
+        textLine("Hit the next arrow..."),
+        textLineFragment("... to step through ..."),
+        textLine(textFragment("... a"), textFragment(" fragmented"), textFragment(" slide."))
+      ),
+
+      slide(
+        title2("Transition Styles"),
+        textLine(
+          "You can select from different transitions, like:",
+          emptyLine(),
+          alink(
+            linkURL("?transition=none#/transitions"),
+            "None"
+          ),
+          " - ",
+          alink(
+            linkURL("?transition=fade#/transitions"),
+            "Fade"
+          ),
+          " - ",
+          alink(
+            linkURL("?transition=slide#/transitions"),
+            "Slide"
+          ),
+          " - ",
+          alink(
+            linkURL("?transition=convex#/transitions"),
+            "Convex"
+          ),
+          " - ",
+          alink(
+            linkURL("?transition=concave#/transitions"),
+            "Concave"
+          ),
+          " - ",
+          alink(
+            linkURL("?transition=zoom#/transitions"),
+            "Zoom"
+          )
+        )
 
       ),
 
       slide(
-        title1("Table"),
-        table(
-          thead(
-            tr(
-              td("Entête 1"),
-              td("Entête 2")
-            )
+        title2("Themes"),
+        textLine(
+          "reveal.js comes with a few themes built in:",
+          emptyLine(),
+          textLine("Swap themes after the page has loaded is not flexible and only intended for the reveal.js demo deck.")
+        )
+      ),
+
+      slide(
+        slide(
+          attr("data-background"):="#dddddd",
+          title2("Slide backgrounds"),
+          textLine(
+            "Set ",
+            code("data-background=\"#dddddd\""),
+            " on a slide to change the background color. All CSS color formats are supported"
           ),
-          tbody(
-            tr(
-              td("test"),
-              td("test1")
-            ),
-            tr(
-              td("toast"),
-              td("taost")
+          alink(
+            attr("class"):="navigate-down",
+            attr("class"):=" enabled",
+            linkURL("#"),
+            img(
+              attr("alt"):="Down arrow",
+              attr("src"):="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png"
             )
           )
+        ),
+        slide(
+          attr("data-background"):="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png",
+          title2("Image Backgrounds")
         )
+      ),
+
+      // A revoir, ne fonctionne pas correctement
+      slide(
+        attr("data-markdown"):="data-markdown",
+        "## Test slideMarkDown  A paragraph with some text and a [link](http://hakim.se)."
       ),
 
       slide(
@@ -231,6 +408,6 @@ object IndexView {
 
     ) // Fermeture presentation
 
-  }
+  } // Fermeture def apply
 
-}
+} // Fermeture object IndexView
