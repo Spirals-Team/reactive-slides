@@ -10,18 +10,26 @@ object IndexView {
   // ----------------------------------- Définition du DSL - Début -----------------------------------
   // ---------------------------------------------------------------------------------------
 
-  def presentationTitle = "Présentation exemple avec reveal.js"
+  def presentationTitle = "reveal.js - The HTML Presentation Framework"
   def presentation(titleText: String, theme: String, array: scalatags.Text.Modifier*) = // Ne pas renommer array en content, provoque un bug
     Seq(
       html(
         head(
           meta(charset := "utf-8"),
-          meta(name := "viewport", content := "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"),
 
           title(titleText),
 
+          meta(name := "description", content := "A framework for easily creating beautiful presentations using HTML"),
+          meta(name := "author", content := "Author"),
+
+          meta(name := "apple-mobile-web-app-capable", content := "yes"),
+          meta(name := "apple-mobile-web-app-status-bar-style", content := "black-translucent"),
+
+          meta(name := "viewport", content := "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"),
+
           link(rel := "stylesheet", href := "assets/stylesheets/reveal.css"),
-          link(rel := "stylesheet", href := "assets/stylesheets/theme/"+theme+".css"),
+          link(rel := "stylesheet", href := "assets/stylesheets/theme/"+theme+".css", id := "theme"),
+
           link(rel := "stylesheet", href := "assets/stylesheets/lib/zenburn.css")
         ), // Fermeture head
 
@@ -33,7 +41,7 @@ object IndexView {
         ), // Fermeture body
         script(src := "assets/javascripts/reveal.js")
       ), // Fermeture html
-      script("Reveal.initialize();")
+      script("Reveal.initialize({controls:true,progress:true,history:true,center:true,transition:'slide',dependencies:[{ src : 'lib/js/classList.js', condition: function() { return !document.body.classList; }},{ src : 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad();}},{ src: 'plugin/zoom-js/zoom.js',async:true},{ src : 'plugin/notes/notes.js', async:true},{src:'plugin/markdown/marked.js', condition : function(){ return !!document.querySelector('[data-markdown]'); }}, { src:'plugin/markdown/markdown.js', condition: function(){ return !!document.querySelector('[data-markdown]');}}]});")
     ) // Fermeture Seq
 
   def slide(content: scalatags.Text.Modifier*) =
@@ -84,14 +92,11 @@ object IndexView {
   def alink(content: scalatags.Text.Modifier*) =
     a(content)
 
-  def tableHead(content: scalatags.Text.Modifier*) =
-    thead(content)
-
-  def tableBody(content: scalatags.Text.Modifier*) =
-    tbody(content)
-
-  def tableLine(content: scalatags.Text.Modifier*) =
+  def tableRow(content: scalatags.Text.Modifier*) =
     tr(content)
+
+  def tableHead(content: scalatags.Text.Modifier*) =
+    th(content)
 
   def tableBox(content: scalatags.Text.Modifier*) =
     td(content)
@@ -338,8 +343,84 @@ object IndexView {
       ),
 
       slide(
-        title2("Tabular Tables")
+        title2("Tabular Tables"),
+        table(
+          tableRow(
+            tableHead("Item"),
+            tableHead("Value"),
+            tableHead("Quantity")
+          ),
+          tableRow(
+            tableBox("Apples"),
+            tableBox("$1"),
+            tableBox("7")
+          ),
+          tableRow(
+            tableBox("Lemonade"),
+            tableBox("$2"),
+            tableBox("18")
+          ),
+          tableRow(
+            tableBox("Bread"),
+            tableBox("$3"),
+            tableBox("2")
+          )
+        )
+      ),
 
+      slide(
+        title2("Clever Quotes"),
+        textLine("These guys come in two forms, inline: \"The nice thing about standards is that there are so many to choose from\" and block:"),
+        blockquote("\"For years has been a theory that millions of monkeys typing at random on millions of of typewriters would reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.\"")
+      ),
+
+      slide(
+        title2("Intergalactic Interconnections"),
+        textLine("You can link between slides internally, ", alink(linkURL("#/2/3"),"like this"),".")
+      ),
+
+      slide(
+        title2("Speaker View"),
+        textLine("There's a ",alink(linkURL("https://github.com/hakimel/reveal.js#speaker-notes"), "speaker view"),". It includes a timer, preview of the upcoming slide as well as your speaker notes."),
+        textLine("Press the S key to try it out.")
+      ),
+
+      slide(
+        title2("Export to PDF"),
+        textLine("Presentations can be ",alink(linkURL("https://github.com/hakimel/reveal.js#pdf-export"),"exported to PDF"),", here's an example:"),
+        textLine("Not supported with this DSL")
+      ),
+
+      slide(
+        title2("Global State"),
+        textLine("Set ",code("data-state=\"something\""), " on a slide and \"something\" will be added as a class to the document element when the slide is open. This lets you apply broader style changes, like switching the page background.")
+      ),
+
+      slide(
+        title2("State Events"),
+        textLine("Additionally custom events can be triggered on a per slide basis by binding to the ", code("data-state"), " name."),
+        code("Reveal.addEventListener('customevent',function(){});")
+      ),
+
+      slide(
+        title2("Take a Moment"),
+        textLine("Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.")
+      ),
+
+      slide(
+        title2("Much more"),
+        unorderedList(
+          listItem("Right-to-left support"),
+          listItem("Extensive JavaScript API"),
+          listItem("Auto-progression"),
+          listItem("Parallax backgrounds"),
+          listItem("Custom keyboard bindings")
+        )
+      ),
+
+      slide(
+        title1("THE END"),
+        textLine("- ", alink(linkURL("http://slides.com"),"Try the online editor"),"<br>- ", alink(linkURL("https://github.com/hakimel/reveal.js"), "Source code & documentation"))
       ),
 
       // A revoir, ne fonctionne pas correctement
