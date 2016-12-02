@@ -5,6 +5,7 @@ object IndexView {
   import scalatags.Text.tags2.section
   import scalatags.Text.tags2.title
   import scalatags._
+  import dsl.Dsl
 
   // ---------------------------------------------------------------------------------------
   // ----------------------------------- Définition du DSL - Début -----------------------------------
@@ -112,6 +113,7 @@ object IndexView {
       code(
         attr("data-trim"):="data-trim",
         attr("data-noescape"):="data-noescape",
+        attr("class"):="hljs",
         content
       )
     )
@@ -137,7 +139,7 @@ object IndexView {
       slide(
         slide(
           title2("Vertical Slides"),
-          textLine("Slides can be nested inside each other."),
+          textLine("Slides can be nested inside of each other."),
           textLine("Use the ", italic("Space")," key to navigate through all slides."),
           emptyLine(),
           alink(
@@ -179,11 +181,6 @@ object IndexView {
       ),
 
       slide(
-        title2("Touch Optimized"),
-        textLine("Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.")
-      ),
-
-      slide(
         title2("Point of View"),
         textLine("Press ", bold("ESC"), " to enter the slide overview."),
         textLine(
@@ -194,16 +191,23 @@ object IndexView {
       ),
 
       slide(
-        title2("Mardown support"),
-        textLine(
-          "Write content using inline or external Markdown. Instructions and more info available in the ",
-          alink(
-            linkURL("https://github.com/hakimel/reveal.js#markdown"),
-            "readme"
+        title2("Touch Optimized"),
+        textLine("Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.")
+      ),
+
+      // A revoir, ne fonctionne pas correctement
+      slide(
+        attr("data-markdown"):="data-markdown",
+        script(
+          attr("type") := "text/template",
+          "## Markdown support Write content using inline or external Markdown. Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).",
+          "...",
+          slide(
+            attr("data-markdown"):="data-markdown",
+            "## Markdown support Write content using inline or external Markdown. Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown)."
           ),
-          "."
-        ),
-        codeQuote("<section data-markdown>## Markdown support. Write content using inline or external Markdown. Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).</section>")
+          "..."
+        )
       ),
 
       slide(
@@ -294,7 +298,7 @@ object IndexView {
         slide(
           attr("data-background-video"):="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm",
           div(
-            attr("style"):="background-color: rgba(0,0,0,0.9)",
+            attr("style"):="background-color: rgba(0,0,0,0.9); padding: 20px;",
             title2("Video Backgrounds"),
             codeQuote("<section data-background-video=\"video.mp4,video.webm\">")
           )
@@ -306,12 +310,18 @@ object IndexView {
       ),
 
       slide(
+        attr("data-transition"):="slide",
+        attr("data-background"):="#4d7e65",
+        attr("data-background-transition"):="zoom",
         title2("Background Transitions"),
         textLine("Different background transitions are available via the backgroundTransition option. This one's called \"zoom\"."),
         codeQuote("Reveal.configure({ backgroundTransition: 'zoom' })")
       ),
 
       slide(
+        attr("data-transition"):="slide",
+        attr("data-background"):="#b5533c",
+        attr("data-background-transition"):="zoom",
         title2("Background Transitions"),
         textLine("You can override background transitions per-slide."),
         codeQuote("<section data-background-transition=\"zoom\">")
@@ -320,7 +330,14 @@ object IndexView {
       slide(
         title2("Pretty Code"),
         codeQuote(""),
-        textLine("Code syntax highlighting courtesy of ", alink(linkURL("http://softwaremaniacs.org/soft/highlight/en/description/"), "highlight.js"),".")
+        textLine(
+          "Code syntax highlighting courtesy of ",
+          alink(
+            linkURL("http://softwaremaniacs.org/soft/highlight/en/description/"),
+            "highlight.js"
+          ),
+          "."
+        )
       ),
 
       slide(
@@ -399,7 +416,7 @@ object IndexView {
       slide(
         title2("State Events"),
         textLine("Additionally custom events can be triggered on a per slide basis by binding to the ", code("data-state"), " name."),
-        code("Reveal.addEventListener('customevent',function(){});")
+        codeQuote("Reveal.addEventListener('customevent',function(){});")
       ),
 
       slide(
@@ -420,13 +437,14 @@ object IndexView {
 
       slide(
         title1("THE END"),
-        textLine("- ", alink(linkURL("http://slides.com"),"Try the online editor"),"<br>- ", alink(linkURL("https://github.com/hakimel/reveal.js"), "Source code & documentation"))
-      ),
-
-      // A revoir, ne fonctionne pas correctement
-      slide(
-        attr("data-markdown"):="data-markdown",
-        "## Test slideMarkDown  A paragraph with some text and a [link](http://hakim.se)."
+        textLine(
+          "- ",
+          alink(linkURL("http://slides.com"),"Try the online editor")
+        ),
+        textLine(
+          "- ",
+          alink(linkURL("https://github.com/hakimel/reveal.js"), "Source code & documentation")
+        )
       ),
 
       slide(
