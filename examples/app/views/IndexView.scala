@@ -276,8 +276,70 @@ object IndexView {
         ),
         slide(
           attr("data-background"):="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png",
-          title2("Image Backgrounds")
+          title2("Image Backgrounds"),
+          codeQuote("<section data-background=\"image.png\">")
+        ),
+        slide(
+          attr("data-background"):="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png",
+          attr("data-background-repeat"):="repeat",
+          attr("data-background-size"):="100px",
+          title2("Tiled Backgrounds"),
+          codeQuote("<section data-background=\"image.png\" data-background-repeat=\"repeat\" data-background-size=\"100px\">")
+        ),
+        slide(
+          attr("data-background-video"):="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm",
+          div(
+            attr("style"):="background-color: rgba(0,0,0,0.9)",
+            title2("Video Backgrounds"),
+            codeQuote("<section data-background-video=\"video.mp4,video.webm\">")
+          )
+        ),
+        slide(
+          attr("data-background"):="http://i.giphy.com/90F8aUepslB84.gif",
+          title2("... and GIFs!")
         )
+      ),
+
+      slide(
+        title2("Background Transitions"),
+        textLine("Different background transitions are available via the backgroundTransition option. This one's called \"zoom\"."),
+        codeQuote("Reveal.configure({ backgroundTransition: 'zoom' })")
+      ),
+
+      slide(
+        title2("Background Transitions"),
+        textLine("You can override background transitions per-slide."),
+        codeQuote("<section data-background-transition=\"zoom\">")
+      ),
+
+      slide(
+        title2("Pretty Code"),
+        codeQuote(""),
+        textLine("Code syntax highlighting courtesy of ", alink(linkURL("http://softwaremaniacs.org/soft/highlight/en/description/"), "highlight.js"),".")
+      ),
+
+      slide(
+        title2("Marvelous List"),
+        unorderedList(
+          listItem("No order here"),
+          listItem("Or here"),
+          listItem("Or here"),
+          listItem("Or here")
+        )
+      ),
+
+      slide(
+        title2("Fantastic Ordered List"),
+        orderedList(
+          listItem("One is smaller than..."),
+          listItem("Two is smaller than..."),
+          listItem("Three!")
+        )
+      ),
+
+      slide(
+        title2("Tabular Tables")
+
       ),
 
       // A revoir, ne fonctionne pas correctement
