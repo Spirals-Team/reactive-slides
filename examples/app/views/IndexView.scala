@@ -5,12 +5,13 @@ object IndexView {
   import scalatags.Text.tags2.section
   import scalatags.Text.tags2.title
   import scalatags._
+  import dsl.Dsl
 
   // ---------------------------------------------------------------------------------------
   // ----------------------------------- Définition du DSL - Début -----------------------------------
   // ---------------------------------------------------------------------------------------
 
-  def presentationTitle = "Présentation exemple avec reveal.js"
+
   def presentation(titleText: String, theme: String, array: scalatags.Text.Modifier*) = // Ne pas renommer array en content, provoque un bug
     Seq(
       html(
@@ -36,14 +37,16 @@ object IndexView {
       script("Reveal.initialize();")
     ) // Fermeture Seq
 
-  def slide(content: scalatags.Text.Modifier*) =
-    section(content)
+
 
   def title1(content: scalatags.Text.Modifier*) =
     h1(content)
 
   def title2(content: scalatags.Text.Modifier*) =
     h2(content)
+
+  def slide(content: scalatags.Text.Modifier*) =
+    section(content)
 
   def title3(content: scalatags.Text.Modifier*) =
     h3(content)
@@ -63,14 +66,7 @@ object IndexView {
   def textFragment(content: scalatags.Text.Modifier*) =
     span(attr("class"):="fragment", content)
 
-  def italic(content: String) =
-    em(content)
 
-  def bold(content: String) =
-    strong(content)
-
-  def emptyLine =
-    br
 
   def unorderedList(content: scalatags.Text.Modifier*) =
     ul(content)
@@ -96,20 +92,6 @@ object IndexView {
   def tableBox(content: scalatags.Text.Modifier*) =
     td(content)
 
-  def linkURL(content: String) =
-    attr("href"):=content
-
-  def source(content: String) =
-    attr("src"):=content
-
-  def codeQuote(content: String) =
-    pre(
-      code(
-        attr("data-trim"):="data-trim",
-        attr("data-noescape"):="data-noescape",
-        content
-      )
-    )
 
   // ---------------------------------------------------------------------------------------
   // ----------------------------------- Définition du DSL - Fin -----------------------------------
@@ -133,8 +115,8 @@ object IndexView {
         slide(
           title2("Vertical Slides"),
           textLine("Slides can be nested inside each other."),
-          textLine("Use the ", italic("Space")," key to navigate through all slides."),
-          emptyLine(),
+          textLine("Use the ", Dsl.italic("Space")," key to navigate through all slides."),
+          Dsl.emptyLine(),
           alink(
             attr("class"):="navigate-down",
             attr("enabled"):="enabled",
@@ -152,9 +134,9 @@ object IndexView {
         slide(
           title2("Basement level 2"),
           textLine("That's it, time to go back up."),
-          emptyLine(),
+          Dsl.emptyLine(),
           alink(
-            linkURL("#/2"),
+            Dsl.linkURL("#/2"),
             img(
               attr("alt"):="Up arrow",
               attr("style"):="transform: rotate(180deg);",
@@ -168,7 +150,7 @@ object IndexView {
         title2("Slides"),
         textLine(
           "Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it out at ",
-          alink(linkURL("http://slides.com"), attr("target"):="_blank","http://slides.com"),
+          alink(Dsl.linkURL("http://slides.com"), attr("target"):="_blank","http://slides.com"),
           "."
         )
       ),
@@ -180,10 +162,10 @@ object IndexView {
 
       slide(
         title2("Point of View"),
-        textLine("Press ", bold("ESC"), " to enter the slide overview."),
+        textLine("Press ", Dsl.bold("ESC"), " to enter the slide overview."),
         textLine(
           "Hold down alt and click on any element to zoom in on it using ",
-          alink(linkURL("http://lab.hakim.se/zoom-js"), "zoom.js"),
+          alink(Dsl.linkURL("http://lab.hakim.se/zoom-js"), "zoom.js"),
           ". Alt + Click anywhere to zoom back out."
         )
       ),
@@ -193,12 +175,12 @@ object IndexView {
         textLine(
           "Write content using inline or external Markdown. Instructions and more info available in the ",
           alink(
-            linkURL("https://github.com/hakimel/reveal.js#markdown"),
+            Dsl.linkURL("https://github.com/hakimel/reveal.js#markdown"),
             "readme"
           ),
           "."
         ),
-        codeQuote("<section data-markdown>## Markdown support. Write content using inline or external Markdown. Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).</section>")
+        Dsl.codeQuote("<section data-markdown>## Markdown support. Write content using inline or external Markdown. Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).</section>")
       ),
 
       slide(
@@ -212,34 +194,34 @@ object IndexView {
         title2("Transition Styles"),
         textLine(
           "You can select from different transitions, like:",
-          emptyLine(),
+          Dsl.emptyLine(),
           alink(
-            linkURL("?transition=none#/transitions"),
+            Dsl.linkURL("?transition=none#/transitions"),
             "None"
           ),
           " - ",
           alink(
-            linkURL("?transition=fade#/transitions"),
+            Dsl.linkURL("?transition=fade#/transitions"),
             "Fade"
           ),
           " - ",
           alink(
-            linkURL("?transition=slide#/transitions"),
+            Dsl.linkURL("?transition=slide#/transitions"),
             "Slide"
           ),
           " - ",
           alink(
-            linkURL("?transition=convex#/transitions"),
+            Dsl.linkURL("?transition=convex#/transitions"),
             "Convex"
           ),
           " - ",
           alink(
-            linkURL("?transition=concave#/transitions"),
+            Dsl.linkURL("?transition=concave#/transitions"),
             "Concave"
           ),
           " - ",
           alink(
-            linkURL("?transition=zoom#/transitions"),
+            Dsl.linkURL("?transition=zoom#/transitions"),
             "Zoom"
           )
         )
@@ -250,7 +232,7 @@ object IndexView {
         title2("Themes"),
         textLine(
           "reveal.js comes with a few themes built in:",
-          emptyLine(),
+          Dsl.emptyLine(),
           textLine("Swap themes after the page has loaded is not flexible and only intended for the reveal.js demo deck.")
         )
       ),
@@ -267,7 +249,7 @@ object IndexView {
           alink(
             attr("class"):="navigate-down",
             attr("class"):=" enabled",
-            linkURL("#"),
+            Dsl.linkURL("#"),
             img(
               attr("alt"):="Down arrow",
               attr("src"):="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png"
@@ -292,7 +274,7 @@ object IndexView {
 
           title2("Collaborator Number 1"),
 
-          emptyLine,
+          Dsl.emptyLine,
 
           title3("Nicolas Vasseur", alink(attr("href") := "https://github.com/Tiplok", " -Tiplok")),
 
@@ -334,7 +316,7 @@ object IndexView {
 
         slide(title2("Collaborator Number 2"),
 
-          emptyLine,
+          Dsl.emptyLine,
 
           title3("Rahal Badr", alink(attr("href") := "https://github.com/rbadr", " -rbadr")),
 

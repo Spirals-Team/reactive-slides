@@ -7,7 +7,7 @@ lazy val examples = (project in file("examples")).settings(
   libraryDependencies ++= Seq(
     "com.lihaoyi" %% "scalatags" % "0.6.1"
   )
-).enablePlugins(PlayScala)
+).enablePlugins(PlayScala).dependsOn(framework)
 
 lazy val framework = (project in file("framework")).settings(
   scalaVersion := scalaV,
