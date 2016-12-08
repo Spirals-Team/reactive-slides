@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/rbadr/InteractivePresentation.svg?branch=master)](https://travis-ci.org/rbadr/InteractivePresentation)
+[![Build Status](https://travis-ci.org/rbadr/reactive-slides.svg?branch=master)](https://travis-ci.org/rbadr/reactive-slides)
 
 # reactive-slides
 A web framework for building interactive presentations
