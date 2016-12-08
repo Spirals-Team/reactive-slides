@@ -1,4 +1,5 @@
 # Ignore Play! working directory #
+.idea/*
 bin/
 /db
 .eclipse
@@ -17,4 +18,3 @@ server.pid
 
 target/
 logs/
-.idea/
