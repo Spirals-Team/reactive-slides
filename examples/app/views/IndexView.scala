@@ -4,8 +4,6 @@ object IndexView {
   import scalatags.Text.all._
   import scalatags.Text.tags2.section
   import scalatags.Text.tags2.title
-  import scalatags._
-  import dsl.Dsl
 
   // ---------------------------------------------------------------------------------------
   // ----------------------------------- Définition du DSL - Début -----------------------------------
