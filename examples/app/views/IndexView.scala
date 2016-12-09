@@ -40,7 +40,7 @@ object IndexView {
         ), // Fermeture body
         script(src := "assets/javascripts/reveal.js")
       ), // Fermeture html
-      script("Reveal.initialize({controls:true,progress:true,history:true,center:true,transition:'slide',dependencies:[{ src : 'lib/js/classList.js', condition: function() { return !document.body.classList; }},{ src : 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad();}},{ src: 'plugin/zoom-js/zoom.js',async:true},{ src : 'plugin/notes/notes.js', async:true},{src:'plugin/markdown/marked.js', condition : function(){ return !!document.querySelector('[data-markdown]'); }}, { src:'plugin/markdown/markdown.js', condition: function(){ return !!document.querySelector('[data-markdown]');}}]});")
+      script("Reveal.initialize({controls:true,progress:true,history:true,center:true,transition:'slide',dependencies:[{ src : 'lib/js/classList.js', condition: function() { return !document.body.classList; }},{ src : 'assets/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad();}},{ src: 'assets/plugin/zoom-js/zoom.js',async:true},{ src : 'assets/plugin/notes/notes.js', async:true},{src:'assets/plugin/markdown/marked.js', condition : function(){ return !!document.querySelector('[data-markdown]'); }}, { src:'assets/plugin/markdown/markdown.js', condition: function(){ return !!document.querySelector('[data-markdown]');}}]});")
     ) // Fermeture Seq
 
   def slide(content: scalatags.Text.Modifier*) =
@@ -92,7 +92,7 @@ object IndexView {
     a(content)
 
   def tableRow(content: scalatags.Text.Modifier*) =
-    tr(content)
+    tr(attr("class"):="reveal", content)
 
   def tableHead(content: scalatags.Text.Modifier*) =
     th(content)
@@ -386,7 +386,7 @@ object IndexView {
       slide(
         title2("Clever Quotes"),
         textLine("These guys come in two forms, inline: \"The nice thing about standards is that there are so many to choose from\" and block:"),
-        blockquote("\"For years has been a theory that millions of monkeys typing at random on millions of of typewriters would reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.\"")
+        blockquote("\"For years there has been a theory that millions of monkeys typing at random on millions of of typewriters would reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.\"")
       ),
 
       slide(
