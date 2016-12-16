@@ -18,8 +18,12 @@ object IndexView {
   // ---------------------------------------------------------------------------------------
 
 
-  def apply(title: String) = {
+  def apply(title: String, outString: String) = {
     presentation(title, "black",
+
+      slide(
+        textLine(outString)
+      ),
 
       slide(
         title1("Reveal.js"),

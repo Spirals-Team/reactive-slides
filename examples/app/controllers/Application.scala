@@ -10,12 +10,12 @@ import javax.inject.Inject
 import views.IndexView
 import views.MainView
 
-class Application @Inject()(implicit env: play.Environment)
-    extends Controller {
+class Application @Inject()(db: Database)(implicit env: play.Environment) extends Controller {
 
   def presentationTitle = "reveal.js - The HTML Presentation Framework"
 
-  def index = Action {
+  def index = {
+
     var outString = "Number is "
     val conn = db.getConnection()
 
@@ -29,12 +29,13 @@ class Application @Inject()(implicit env: play.Environment)
     } finally {
       conn.close()
     }
-    Ok(outString)
-    ok(IndexView(presentationTitle))
+
+    ok(IndexView(presentationTitle, outString))
   }
 
   def ok(view: Seq[Text.TypedTag[String]]) = Action {
     implicit val codec = Codec.utf_8
+
     Ok(MainView(view).toString).withHeaders(CONTENT_TYPE -> ContentTypes.HTML)
   }
 
