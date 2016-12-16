@@ -18,11 +18,11 @@ object IndexView {
   // ---------------------------------------------------------------------------------------
 
 
-  def apply(title: String, outString: String) = {
+  def apply(title: String, outString: scalatags.Text.Modifier*) = {
     presentation(title, "black",
 
       slide(
-        textLine(outString)
+        outString
       ),
 
       slide(
