@@ -5,14 +5,19 @@ lazy val scalaV = "2.11.8"
 lazy val examples = (project in file("examples")).settings(
   scalaVersion := scalaV,
   libraryDependencies ++= Seq(
-    "com.lihaoyi" %% "scalatags" % "0.6.1"
+    "com.lihaoyi" %% "scalatags" % "0.6.1",
+    jdbc,
+    "mysql" % "mysql-connector-java" % "5.1.36"
+
   )
 ).enablePlugins(PlayScala).dependsOn(framework)
 
 lazy val framework = (project in file("framework")).settings(
   scalaVersion := scalaV,
   libraryDependencies ++= Seq(
-    "com.lihaoyi" %% "scalatags" % "0.6.1"
+    "com.lihaoyi" %% "scalatags" % "0.6.1",
+    jdbc,
+    "mysql" % "mysql-connector-java" % "5.1.36"
   )
 ).enablePlugins(PlayScala)
 
