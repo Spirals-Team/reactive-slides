@@ -9,11 +9,12 @@ A web framework for building interactive presentations
 -- At the project root, open a terminal and tap '$ activator start'  
 -- Go to localhost:9000 in a browser
 
--- You need a MySQL server running with these parameters (use the database.sql file to import the database model) :
+-- You need a MySQL server running with these parameters :
 --- Port : 3306 (default)
 --- DB_name : playdb
 --- username : root
 --- password : password
+--- Use the database.sql file to import the database model
 
 - Useful informations :  
 -- The HTML presentation framework used is [reveal.js](http://lab.hakim.se/reveal-js/#/)  
@@ -26,16 +27,18 @@ A web framework for building interactive presentations
 - Pour lancer le serveur :  
 -- [Play with activator](https://www.playframework.com/download) est nécessaire, fonctionne actuellement avec Play 2.5.4 et activator 1.3.12 qui requiert le JDK 1.8  
 -- A la racine du projet, ouvrir un terminal et taper '$ activator start'  
--- Aller sur localhost:9000 via un navigateur  
+-- Aller sur localhost:9000 via un navigateur
+
+-- Vous avez besoin d'un serveur MySQL qui tourne avec ces paramètres :
+--- Port : 3306 (default)
+--- DB_name : playdb
+--- username : root
+--- password : password
+--- Utilisez le fichier database.sql pour importer le modèle de la base de données
+
 
 - Informations utiles :  
 -- Le framework de présentation HTML utilisé est [reveal.js](http://lab.hakim.se/reveal-js/#/)  
 -- Utilise aussi une librairie pour Scala nommée [scalatags](http://www.lihaoyi.com/scalatags/) (version 0.6.1)  
 -- Ne fonctionne pas avec activator ui  
--- La commande '$ activator clean stage' peut-être utile pour recompiler  
-
--- Vous avez besoin d'un serveur MySQL qui tourne avec ces paramètres (Utilisez le fichier database.sql pour importer le modèle de la base de données) :
---- Port : 3306 (default)
---- DB_name : playdb
---- username : root
---- password : password
+-- La commande '$ activator clean stage' peut-être utile pour recompiler
