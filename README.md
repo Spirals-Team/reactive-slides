@@ -36,9 +36,9 @@ A web framework for building interactive presentations
 
 #### Pour mettre en place la base de données, vous avez besoin d'un serveur MySQL qui tourne avec ces paramètres :
 - Port : 3306 (default)
-- DB_name : playdb
-- username : root
-- password : password
+- nom de la base de données : playdb
+- nom d'utilisateur : root
+- mot de passe : password
 - Utilisez le fichier database.sql pour importer le modèle de la base de données
 
 
