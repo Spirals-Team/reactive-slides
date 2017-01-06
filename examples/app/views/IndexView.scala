@@ -20,19 +20,11 @@ object IndexView {
 
   def apply(title: String, outString: scalatags.Text.Modifier*) = {
     presentation(title, "black",
-      slide(
 
-        title2("Is it working ?"),
-        form(
-          div(`class` := "radio",
-            label(input(`type` :="radio", `name` :="reponse", "Yes")
-            )),
-          div(`class` := "radio",
-            label(input(`type` :="radio", `name` :="reponse", "No")
-            )),
-          button(`type` :="submit", `formmethod` :="post", `formaction` :="routes.Application.saveAnswer()", "Submit")
-        )
+      slide(
+        survey("Are you working ?","Yes", "No")
       ),
+
 
       slide(
         canvas( attr("data-chart"):="pie",
