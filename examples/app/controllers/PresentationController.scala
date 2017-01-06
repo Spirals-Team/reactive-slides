@@ -4,16 +4,17 @@ import javax.inject.Inject
 import java.io._
 
 import dsl.Dsl._
+import models.QuestionFormService
 import play.api.db._
 import play.api.http._
 import play.api.mvc._
-import views.{IndexView, MainView}
+import views.{IndexView, MainView, Question1View}
 
 import scala.collection.mutable.ListBuffer
 import scalatags.Text.all._
 import scalatags._
 
-class Application @Inject()(db: Database)(implicit env: play.Environment) extends Controller {
+class PresentationController @Inject()(db: Database, questionFormService: QuestionFormService)(implicit env: play.Environment) extends Controller {
 
   def presentationTitle = "reveal.js - The HTML Presentation Framework"
 
@@ -53,10 +54,14 @@ class Application @Inject()(db: Database)(implicit env: play.Environment) extend
     ok(IndexView(presentationTitle, elementsList))
   }
 
+  def showQuestion1 = {
+    ok(Question1View(presentationTitle))
+  }
+
+
   def ok(view: Seq[Text.TypedTag[String]]) = Action {
     implicit val codec = Codec.utf_8
 
     Ok(MainView(view).toString).withHeaders(CONTENT_TYPE -> ContentTypes.HTML)
   }
-
 }

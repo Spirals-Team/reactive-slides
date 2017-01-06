@@ -154,7 +154,7 @@ object Dsl {
             )
           )
         ),
-        button(`type` := "submit", `class` := "btn btn-default", `value` := "&#xf011", "Submit")
+        button(`type` :="submit", `formmethod` :="post", `formaction` :="routes.Application.saveAnswer()", "Submit")
       )
     )
 
