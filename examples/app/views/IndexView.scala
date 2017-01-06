@@ -21,8 +21,22 @@ object IndexView {
   def apply(title: String, outString: scalatags.Text.Modifier*) = {
     presentation(title, "black",
 
-      survey(
-        question("Are you working ?", "Yes", "No")
+      slide(
+        survey("Are you working ?","Yes", "No")
+      ),
+
+      slide(
+
+        title2("Is it working ?"),
+        form(
+          div(`class` := "radio",
+            label(input(`type` :="radio", `name` :="reponse", "Yes")
+            )),
+          div(`class` := "radio",
+            label(input(`type` :="radio", `name` :="reponse", "No")
+            )),
+          button(`type` :="submit", `class` :="btn btn-default", `value` :="&#xf011", "Submit")
+        )
       ),
 
       slide(

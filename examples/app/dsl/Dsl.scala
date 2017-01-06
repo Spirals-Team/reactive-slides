@@ -36,8 +36,8 @@ object Dsl {
         ), // Fermeture body
         script(src := "assets/javascripts/reveal.js")
       ), // Fermeture html
-      script(scala.io.Source.fromFile("examples/public/reveal_initialize.txt").mkString))
-  // Fermeture Seq
+      script(scala.io.Source.fromFile("examples/public/reveal_initialize.txt").mkString)
+    ) // Fermeture Seq
 
   def slide(content: scalatags.Text.Modifier*) =
     section(content)
@@ -111,5 +111,52 @@ object Dsl {
         content
       )
     )
+
+  /*def answersLoop(content: scalatags.Text.Modifier*) : scalatags.Text.Modifier = {
+    var i = 0;
+    for (i <- 1 to 3) {
+      div(
+        `class` := "radio",
+        label(
+          input(
+            `type` := "radio",
+            `name` := "reponse",
+            "réponse"+i
+          )
+        )
+      )
+    }
+  }*/
+
+  // Cette fonction devra afficher le QR code pour accèder à la page de la question dont l'affichage pourra etre comme celui générée ci-dessous,
+  // il faut aussi réussir à boucler sur le nombre de réponses possibles pour lui créer une radio à chaque itération (tentative avec la fonction answersLoop() plus haut)
+  def survey(content: scalatags.Text.Modifier*) =
+    Seq(
+      title2(content(0)),
+      form(
+        div(
+          `class` := "radio",
+          label(
+            input(
+              `type` := "radio",
+              `name` := "reponse",
+              content(1)
+            )
+          )
+        ),
+        div(
+          `class` := "radio",
+          label(
+            input(
+              `type` := "radio",
+              `name` := "reponse",
+              content(2)
+            )
+          )
+        ),
+        button(`type` := "submit", `class` := "btn btn-default", `value` := "&#xf011", "Submit")
+      )
+    )
+
 
 }
