@@ -14,7 +14,8 @@ server.pid
 *.eml
 /dist/
 .cache
-
-
+sbt-dist/*
+sbt.bat
+sbt
 target/
 logs/
