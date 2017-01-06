@@ -20,6 +20,11 @@ object IndexView {
 
   def apply(title: String, outString: scalatags.Text.Modifier*) = {
     presentation(title, "black",
+
+      survey(
+        question("Are you working ?", "Yes", "No")
+      ),
+
       slide(
         canvas( attr("data-chart"):="pie",
           scala.io.Source.fromFile("examples/public/charts/chart_content.txt").mkString

@@ -25,7 +25,7 @@ class Application @Inject()(db: Database)(implicit env: play.Environment) extend
 
     try {
       val stmt = conn.createStatement
-      val query = "SELECT reponse, COUNT(reponse) as nb FROM question_reponse WHERE question = 'Are you working ?' GROUP BY reponse"
+      val query = "SELECT reponse, COUNT(reponse) as nb FROM question_reponse WHERE question = 'How old are you ?' GROUP BY reponse"
       val rs = stmt.executeQuery(query)
 
       var firstLine = ""
