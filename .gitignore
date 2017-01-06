@@ -12,6 +12,7 @@ tmp/
 test-result
 server.pid
 *.eml
+*.iml
 /dist/
 .cache
 sbt-dist/*
