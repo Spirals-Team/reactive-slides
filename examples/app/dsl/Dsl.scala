@@ -128,8 +128,7 @@ object Dsl {
     }
   }*/
 
-  // Cette fonction devra afficher le QR code pour accèder à la page de la question dont l'affichage pourra etre comme celui générée ci-dessous,
-  // il faut aussi réussir à boucler sur le nombre de réponses possibles pour lui créer une radio à chaque itération (tentative avec la fonction answersLoop() plus haut)
+  // il faut réussir à boucler sur le nombre de réponses possibles pour lui créer une radio à chaque itération (tentative avec la fonction answersLoop() plus haut)
   def survey(content: scalatags.Text.Modifier*) =
     Seq(
       title2(content(0)),
@@ -157,6 +156,12 @@ object Dsl {
         button(`type` :="submit", `formmethod` :="post", `formaction` :="routes.Application.saveAnswer()", "Submit")
       )
     )
+
+    def questionQRcode(question: String) =
+      img(
+        sourceAttr("https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=http://monserver.com/"+question)
+      )
+
 
 
 }

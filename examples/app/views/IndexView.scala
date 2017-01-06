@@ -22,9 +22,7 @@ object IndexView {
     presentation(title, "black",
 
       slide(
-        img(
-          sourceAttr("https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=http://monserver.com/Question1/")
-        )
+        questionQRcode("Question1")
       ),
 
       slide(
