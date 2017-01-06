@@ -2,8 +2,9 @@ package views
 
 object Question1View {
 
-  import scalatags.Text.all._
   import dsl.Dsl._
+
+  import scalatags.Text.all._
 
   def apply(title: String) = {
     presentation(title, "black",
