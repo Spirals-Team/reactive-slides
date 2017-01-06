@@ -20,10 +20,6 @@ object IndexView {
 
   def apply(title: String, outString: scalatags.Text.Modifier*) = {
     presentation(title, "black",
-
-
-
-
       slide(
 
         title2("Is it working ?"),
@@ -34,7 +30,7 @@ object IndexView {
           div(`class` := "radio",
             label(input(`type` :="radio", `name` :="reponse", "No")
             )),
-          button(`type` :="submit", `class` :="btn btn-default", `value` :="&#xf011", "Submit")
+          button(`type` :="submit", `formmethod` :="post", `formaction` :="routes.Application.saveAnswer()", "Submit")
         )
       ),
 

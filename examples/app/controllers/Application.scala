@@ -4,6 +4,7 @@ import javax.inject.Inject
 import java.io._
 
 import dsl.Dsl._
+import models.QuestionFormService
 import play.api.db._
 import play.api.http._
 import play.api.mvc._
@@ -13,7 +14,7 @@ import scala.collection.mutable.ListBuffer
 import scalatags.Text.all._
 import scalatags._
 
-class Application @Inject()(db: Database)(implicit env: play.Environment) extends Controller {
+class Application @Inject()(db: Database, questionFormService: QuestionFormService)(implicit env: play.Environment) extends Controller {
 
   def presentationTitle = "reveal.js - The HTML Presentation Framework"
 
@@ -58,5 +59,4 @@ class Application @Inject()(db: Database)(implicit env: play.Environment) extend
 
     Ok(MainView(view).toString).withHeaders(CONTENT_TYPE -> ContentTypes.HTML)
   }
-
 }
