@@ -1,22 +1,17 @@
 package controllers
 
-import play.api.http._
-import play.api.mvc._
-import play.api.db._
+import javax.inject.Inject
 import java.io._
 
-import scalatags._
-import javax.inject.Inject
-
-import views.IndexView
-import views.MainView
-
-import scalatags.Text.all._
-import scalatags.Text.tags2.section
-import scalatags.Text.tags2.title
 import dsl.Dsl._
+import play.api.db._
+import play.api.http._
+import play.api.mvc._
+import views.{IndexView, MainView}
 
 import scala.collection.mutable.ListBuffer
+import scalatags.Text.all._
+import scalatags._
 
 class Application @Inject()(db: Database)(implicit env: play.Environment) extends Controller {
 
@@ -33,27 +28,25 @@ class Application @Inject()(db: Database)(implicit env: play.Environment) extend
       val query = "SELECT reponse, COUNT(reponse) as nb FROM question_reponse WHERE question = 'Are you working ?' GROUP BY reponse"
       val rs = stmt.executeQuery(query)
 
+      var firstLine = ""
       while (rs.next()) {
-        elements += textLine(rs.getString("reponse")+" : "+rs.getString("nb"))
+        firstLine += ", " + rs.getString("reponse")
       }
+
+      rs.beforeFirst()
+
+      var secondLine = "My first dataset"
+      while(rs.next()){
+
+        secondLine += ", " + rs.getString("nb")
+      }
+
+      val pw = new PrintWriter(new File("examples/public/charts/chart_content.txt"))
+      pw.write(firstLine+"\n"+secondLine)
+      pw.close
+
     } finally {
       conn.close()
-    }
-
-    val conn2 = db.getConnection()
-
-    try {
-      val stmt2 = conn2.createStatement
-      val chartquery = "SELECT COUNT(reponse) as nb_yes, 1 as nb_no FROM question_reponse WHERE question = 'Are you working ?' AND reponse = 'Yes'"
-      val rschart = stmt2.executeQuery(chartquery)
-
-      while (rschart.next()){
-        val pw = new PrintWriter(new File("examples/public/charts/Areyouworking.txt" ))
-        pw.write(", Non, Oui\n My first dataset, "+rschart.getString("nb_no")+", "+rschart.getString("nb_yes"))
-        pw.close
-      }
-    } finally {
-    conn.close()
     }
 
     val elementsList = elements.toList

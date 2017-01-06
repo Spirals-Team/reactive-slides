@@ -36,8 +36,8 @@ object Dsl {
         ), // Fermeture body
         script(src := "assets/javascripts/reveal.js")
       ), // Fermeture html
-      script("Reveal.initialize({controls:true,progress:true,history:true,center:true,transition:'slide',dependencies:[{ src : 'assets/javascripts/lib/classList.js', condition: function() { return !document.body.classList; }},{ src : 'assets/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad();}},{ src: 'assets/plugin/zoom-js/zoom.js',async:true},{ src : 'assets/plugin/notes/notes.js', async:true},{src:'assets/plugin/markdown/marked.js', condition : function(){ return !!document.querySelector('[data-markdown]'); }}, { src:'assets/plugin/markdown/markdown.js', condition: function(){ return !!document.querySelector('[data-markdown]');}}]});")
-    ) // Fermeture Seq
+      script(scala.io.Source.fromFile("examples/public/reveal_initialize.txt").mkString))
+  // Fermeture Seq
 
   def slide(content: scalatags.Text.Modifier*) =
     section(content)

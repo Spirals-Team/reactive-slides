@@ -1,10 +1,8 @@
-[![Build Status](https://travis-ci.org/rbadr/reactive-slides.svg?branch=master)](https://travis-ci.org/rbadr/reactive-slides)
-
-# reactive-slides
+# reactive-slides [![Build Status](https://travis-ci.org/rbadr/reactive-slides.svg?branch=master)](https://travis-ci.org/rbadr/reactive-slides) [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.txt)
 A web framework for building interactive presentations
 
 
-### To run the server :
+### To run the server :
 - [Play with activator](https://www.playframework.com/download) is required, currently working with Play 2.5.4 and activator 1.3.12 that requires JDK 1.8
 - Setup the database (see below)
 - At the project root, open a terminal and tap '$ activator start'
