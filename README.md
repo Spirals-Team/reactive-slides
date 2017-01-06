@@ -1,6 +1,9 @@
 # reactive-slides [![Build Status](https://travis-ci.org/rbadr/reactive-slides.svg?branch=master)](https://travis-ci.org/rbadr/reactive-slides) [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.txt)
-A web framework for building interactive presentations
+A web framework for building interactive presentations.
 
+This framework allow you to create several questions through your presentation shared by QR code so that audience can answer with their smartphones, tablets...  
+
+That give you a new way to make your presentation interactive and attractive.
 
 ### To run the server :
 - [Play with activator](https://www.playframework.com/download) is required, currently working with Play 2.5.4 and activator 1.3.12 that requires JDK 1.8
@@ -25,6 +28,11 @@ A web framework for building interactive presentations
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Un framework web pour créer des présentations intéractives.
+
+Ce framework vous permet de poser des questions tout au long de votre présentation partagées via un QR code afin que l'audience puisse y répondre à l'aide de leur smartphone, tablette...  
+
+Cela vous offre une nouvelle manière de rendre votre présentation intéractive et attractive.
 
 ### Pour lancer le serveur :
 - [Play with activator](https://www.playframework.com/download) est nécessaire, fonctionne actuellement avec Play 2.5.4 et activator 1.3.12 qui requiert le JDK 1.8
