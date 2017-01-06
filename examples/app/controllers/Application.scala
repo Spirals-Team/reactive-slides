@@ -29,12 +29,11 @@ class Application @Inject()(db: Database)(implicit env: play.Environment) extend
 
     try {
       val stmt = conn.createStatement
-      val query = "SELECT COUNT(reponse) as nb_yes, 1 as nb_no FROM question_reponse WHERE question = 'Are you working ?' AND reponse = 'Yes'"
+      val query = "SELECT reponse, COUNT(reponse) as nb FROM question_reponse WHERE question = 'Are you working ?' GROUP BY reponse"
       val rs = stmt.executeQuery(query)
 
       while (rs.next()) {
-        elements += textLine("Oui : "+rs.getString("nb_yes"))
-        elements += textLine("Non : "+rs.getString("nb_no"))
+        elements += textLine(rs.getString("reponse")+" : "+rs.getString("nb"))
       }
     } finally {
       conn.close()
