@@ -8,7 +8,7 @@ import models.QuestionFormService
 import play.api.db._
 import play.api.http._
 import play.api.mvc._
-import views.{IndexView, MainView}
+import views.{IndexView, MainView, Question1View}
 
 import scala.collection.mutable.ListBuffer
 import scalatags.Text.all._
@@ -53,6 +53,11 @@ class PresentationController @Inject()(db: Database, questionFormService: Questi
     val elementsList = elements.toList
     ok(IndexView(presentationTitle, elementsList))
   }
+
+  def showQuestion1 = {
+    ok(Question1View(presentationTitle))
+  }
+
 
   def ok(view: Seq[Text.TypedTag[String]]) = Action {
     implicit val codec = Codec.utf_8

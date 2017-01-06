@@ -22,11 +22,6 @@ object IndexView {
     presentation(title, "black",
 
       slide(
-        survey("Are you working ?","Yes", "No")
-      ),
-
-
-      slide(
         canvas( attr("data-chart"):="pie",
           scala.io.Source.fromFile("examples/public/charts/chart_content.txt").mkString
         )
