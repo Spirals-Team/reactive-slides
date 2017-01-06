@@ -27,10 +27,6 @@ object IndexView {
       ),
 
       slide(
-        outString
-      ),
-
-      slide(
         title1("Reveal.js"),
         title3("The HTML Presentation Framework")
       ),
