@@ -14,7 +14,7 @@ import scala.collection.mutable.ListBuffer
 import scalatags.Text.all._
 import scalatags._
 
-class Application @Inject()(db: Database, questionFormService: QuestionFormService)(implicit env: play.Environment) extends Controller {
+class PresentationController @Inject()(db: Database, questionFormService: QuestionFormService)(implicit env: play.Environment) extends Controller {
 
   def presentationTitle = "reveal.js - The HTML Presentation Framework"
 
