@@ -53,3 +53,8 @@ Cela vous offre une nouvelle manière de rendre votre présentation intéractive
 - Utilise aussi une librairie pour Scala nommée [scalatags](http://www.lihaoyi.com/scalatags/) (version 0.6.1)
 - Ne fonctionne pas avec activator ui
 - La commande '$ activator clean stage' peut-être utile pour recompiler
+
+#### Pour ajouter une nouvelle question (Temporairement) :
+- Création de la vue dans /examples/app/views/ sous la forme "QuestionXView.scala", X étant le numéro de la question  
+- Importation et définition dans le contrôleur, c'est le fichier /examples/app/controllers/PresentationController.scala On importe la vue et on créé une fonction qui renvoie vers la vue  
+- Mise en place du routing dans le fichier /examples/conf/routes On associe le chemin de l'URL souhaitée à la fonction définie dans le contrôleur  
