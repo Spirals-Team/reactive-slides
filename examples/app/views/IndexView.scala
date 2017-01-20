@@ -17,11 +17,15 @@ object IndexView {
   // ---------------------------------------------------------------------------------------
 
 
-  def apply(title: String, outString: scalatags.Text.Modifier*) = {
-    presentation(title, "black",
+  def apply(title: String, theme: String, outString: scalatags.Text.Modifier*) = {
+    presentation(title, theme,
 
       slide(
         questionQRcode("Question1")
+      ),
+
+      slide(
+        questionQRcode("Question2")
       ),
 
       slide(

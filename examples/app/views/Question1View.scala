@@ -6,8 +6,8 @@ object Question1View {
 
   import scalatags.Text.all._
 
-  def apply(title: String) = {
-    presentation(title, "black",
+  def apply(title: String, theme: String) = {
+    presentation(title, theme,
       slide(
         survey("Are you working ?","Yes", "No")
       )

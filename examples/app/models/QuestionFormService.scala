@@ -39,12 +39,12 @@ class QuestionFormService @Inject()(db: Database){
     }
   }
 
-  def save(result : String) = {
+  def saveAnswer(result : String) = {
     val conn = db.getConnection()
     try {
       val stmt = conn.createStatement
       val query = "insert into question_reponse (question,reponse) values ('Are you working ?','"+result+"')"
-      stmt.executeQuery(query)
+      stmt.executeUpdate(query)
     } finally {
       conn.close()
     }

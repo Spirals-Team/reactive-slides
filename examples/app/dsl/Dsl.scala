@@ -129,6 +129,7 @@ object Dsl {
   }*/
 
   // il faut réussir à boucler sur le nombre de réponses possibles pour lui créer une radio à chaque itération (tentative avec la fonction answersLoop() plus haut)
+  // Sinon on se limite à des questions à 2 réponses à choix unique (sans toucher la fonction survey)
   def survey(content: scalatags.Text.Modifier*) =
     Seq(
       title2(content(0)),
@@ -139,6 +140,7 @@ object Dsl {
             input(
               `type` := "radio",
               `name` := "reponse",
+              `value` := content(1).toString(),
               content(1)
             )
           )
@@ -149,6 +151,7 @@ object Dsl {
             input(
               `type` := "radio",
               `name` := "reponse",
+              `value` := content(2).toString(),
               content(2)
             )
           )
@@ -156,6 +159,8 @@ object Dsl {
         button(`type` :="submit", `formmethod` :="post", `formaction` :="routes.Application.saveAnswer()", "Submit")
       )
     )
+
+
 
     def questionQRcode(question: String) =
       img(
