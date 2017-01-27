@@ -140,7 +140,7 @@ object Dsl {
             input(
               `type` := "radio",
               `name` := "reponse",
-              `value` := content(1).toString(),
+              `value` := content(1).toString().substring(11, content(1).toString().length()-1),
               content(1)
             )
           )
@@ -151,7 +151,7 @@ object Dsl {
             input(
               `type` := "radio",
               `name` := "reponse",
-              `value` := content(2).toString(),
+              `value` := content(2).toString().substring(11, content(2).toString().length()-1),
               content(2)
             )
           )
