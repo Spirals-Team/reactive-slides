@@ -156,7 +156,7 @@ object Dsl {
             )
           )
         ),
-        button(`type` :="submit", `formmethod` :="post", `formaction` :="routes.Application.saveAnswer()", "Submit")
+        button(`type` :="submit", `formmethod` :="post", `formaction` :="routes.Application.saveAnswer()", "Valider")
       )
     )
 
