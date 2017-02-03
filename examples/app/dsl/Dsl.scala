@@ -5,7 +5,6 @@ object Dsl {
   import scalatags.Text.all._
   import scalatags.Text.tags2.{section, title}
 
-  def presentationTitle = "reveal.js - The HTML Presentation Framework"
   def presentation(titleText: String, theme: String, array: scalatags.Text.Modifier*) = // Ne pas renommer array en content, provoque un bug
     Seq(
       html(

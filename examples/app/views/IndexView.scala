@@ -17,7 +17,7 @@ object IndexView {
   // ---------------------------------------------------------------------------------------
 
 
-  def apply(title: String, theme: String, outString: scalatags.Text.Modifier*) = {
+  def apply(title: String, theme: String) = {
     presentation(title, theme,
 
       slide(
@@ -28,9 +28,6 @@ object IndexView {
         questionQRcode("Question2")
       ),
 
-      slide(
-        answersChart("Question1", "pie")
-      ),
 
       slide(
         answersChart("Question2", "pie")
