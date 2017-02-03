@@ -9,7 +9,7 @@ object Question1View {
   def apply(title: String, theme: String) = {
     presentation(title, theme,
       slide(
-        survey("Are you working ?","Yes", "No")
+        survey("Question1", "Are you working ?","Yes", "No")
       )
     )
   }

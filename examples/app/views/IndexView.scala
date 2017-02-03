@@ -29,9 +29,11 @@ object IndexView {
       ),
 
       slide(
-        canvas( attr("data-chart"):="pie",
-          scala.io.Source.fromFile("examples/public/charts/chart_content.txt").mkString
-        )
+        answersChart("Question1", "pie")
+      ),
+
+      slide(
+        answersChart("Question2", "pie")
       ),
 
       slide(

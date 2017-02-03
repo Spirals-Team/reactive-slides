@@ -1,6 +1,8 @@
 package views
 
 import java.io.{File, PrintWriter}
+
+import controllers.PresentationController
 import play.api.db.Database
 
 object AnswerView {
@@ -9,18 +11,18 @@ object AnswerView {
 
   import scalatags.Text.all._
 
-  def apply(title: String, theme: String, reponse: String, db: Database) = {
+  def apply(title: String, theme: String, question: String, reponse: String, number: String, db: Database) = {
 
     val conn = db.getConnection()
     try {
       val stmt = conn.createStatement
 
       // On insère dans la DB la réponse donnée
-      val query = "insert into question_reponse (question,reponse) values ('Are you working ?','"+reponse+"')"
+      val query = "insert into question_reponse (question,reponse) values ('"+question+"','"+reponse+"')"
       stmt.executeUpdate(query)
 
       // On met dans un fichier les résultats de la DB pour mettre à jour le graphe des réponses
-      val query2 = "SELECT reponse, COUNT(reponse) as nb FROM question_reponse WHERE question = 'Are you working ?' GROUP BY reponse"
+      val query2 = "SELECT reponse, COUNT(reponse) as nb FROM question_reponse WHERE question = '"+question+"' GROUP BY reponse"
       val rs = stmt.executeQuery(query2)
 
       var firstLine = ""
@@ -34,7 +36,9 @@ object AnswerView {
         secondLine += ", " + rs.getString("nb")
       }
 
-      val pw = new PrintWriter(new File("examples/public/charts/chart_content.txt"))
+      val yourFile = new File("examples/public/charts/"+number+".txt")
+      yourFile.createNewFile()
+      val pw = new PrintWriter(yourFile)
       pw.write(firstLine + "\n" + secondLine)
       pw.close
 

@@ -130,10 +130,17 @@ object Dsl {
 
   // il faut réussir à boucler sur le nombre de réponses possibles pour lui créer une radio à chaque itération (tentative avec la fonction answersLoop() plus haut)
   // Sinon on se limite à des questions à 2 réponses à choix unique (sans toucher la fonction survey)
-  def survey(content: scalatags.Text.Modifier*) =
+  def survey(number: String, content: scalatags.Text.Modifier*) =
     Seq(
-      title2(content(0)),
       form(
+        title2(
+          input(
+            `type` := "hidden",
+            `name` := "question",
+            `value` := content(0).toString().substring(11, content(0).toString().length()-1),
+            content(0)
+          )
+        ),
         div(
           `class` := "radio",
           label(
@@ -156,7 +163,7 @@ object Dsl {
             )
           )
         ),
-        button(`type` :="submit", `formmethod` :="post", `formaction` :="routes.Application.saveAnswer()", "Valider")
+        button(`type` :="submit", `name` :="number", `value` :=number, `formmethod` :="post", `formaction` :="routes.Application.saveAnswer()", "Valider")
       )
     )
 
@@ -165,6 +172,11 @@ object Dsl {
     def questionQRcode(question: String) =
       img(
         sourceAttr("https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=http://monserver.com/"+question)
+      )
+
+    def answersChart(number: String, chartType: String) =
+      canvas( attr("data-chart"):=chartType,
+        scala.io.Source.fromFile("examples/public/charts/"+number+".txt").mkString
       )
 
 

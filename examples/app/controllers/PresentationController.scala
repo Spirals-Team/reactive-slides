@@ -34,10 +34,17 @@ class PresentationController @Inject()(db: Database, questionFormService: Questi
     ok(Question2View(presentationTitle, theme))
   }
 
-  val questionForm = Form(new Tuple2("reponse", play.api.data.Forms.text))
+  case class QuestionData(question: String, reponse: String, number: String)
+  val questionForm = Form(
+    mapping(
+      "question" -> Forms.text,
+      "reponse" -> Forms.text,
+      "number" -> Forms.text
+    )(QuestionData.apply)(QuestionData.unapply)
+  )
 
   def saveAnswer = Action { implicit request =>
-    val reponse = questionForm.bindFromRequest.get
-    Ok(MainView(AnswerView(presentationTitle, theme, reponse, db)).toString).withHeaders(CONTENT_TYPE -> ContentTypes.HTML)
+    val questionData = questionForm.bindFromRequest.get
+    Ok(MainView(AnswerView(presentationTitle, theme, questionData.question, questionData.reponse, questionData.number, db)).toString).withHeaders(CONTENT_TYPE -> ContentTypes.HTML)
   }
 }
