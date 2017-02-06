@@ -104,4 +104,7 @@ sbt-dist/*
 sbt.bat
 sbt
 
+#RUNNING_PID
+RUNNING_PID
+
 # End of https://www.gitignore.io/api/scala,sbt,playframework,intellij,eclipse
