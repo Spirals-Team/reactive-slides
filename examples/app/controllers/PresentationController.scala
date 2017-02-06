@@ -1,14 +1,13 @@
 package controllers
 
 import javax.inject.Inject
-
 import models.QuestionFormService
 import play.api.data._
 import play.api.data.Forms._
 import play.api.db._
 import play.api.http._
 import play.api.mvc._
-import views.{AnswerView, IndexView, MainView, Question1View, Question2View}
+import views.{AnswerView, PresentationView, MainView, Question1View, Question2View}
 
 import scalatags._
 
@@ -23,7 +22,7 @@ class PresentationController @Inject()(db: Database, questionFormService: Questi
   def theme = "black"
 
   def index = {
-    ok(IndexView(presentationTitle, theme))
+    ok(PresentationView(presentationTitle, theme))
   }
 
   def showQuestion1 = {

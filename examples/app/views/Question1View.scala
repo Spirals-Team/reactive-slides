@@ -3,7 +3,6 @@ package views
 object Question1View {
 
   import dsl.Dsl._
-
   import scalatags.Text.all._
 
   def apply(title: String, theme: String) = {

@@ -2,7 +2,6 @@ package models
 
 import java.io.{File, PrintWriter}
 import javax.inject.Inject
-
 import play.api.db.Database
 
 case class Question(id: Option[Long] = None,

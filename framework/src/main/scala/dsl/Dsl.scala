@@ -5,38 +5,35 @@ object Dsl {
   import scalatags.Text.all._
   import scalatags.Text.tags2.{section, title}
 
-  def presentation(titleText: String, theme: String, array: scalatags.Text.Modifier*) = // Ne pas renommer array en content, provoque un bug
+  def presentation(titleText: String, theme: String, array: scalatags.Text.Modifier*) =
     Seq(
       html(
         head(
           meta(charset := "utf-8"),
-
           title(titleText),
-
           meta(name := "description", content := "A framework for easily creating beautiful presentations using HTML"),
           meta(name := "author", content := "Author"),
-
           meta(name := "apple-mobile-web-app-capable", content := "yes"),
           meta(name := "apple-mobile-web-app-status-bar-style", content := "black-translucent"),
-
           meta(name := "viewport", content := "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"),
 
           link(rel := "stylesheet", href := "assets/stylesheets/reveal.css"),
           link(rel := "stylesheet", href := "assets/stylesheets/theme/"+theme+".css", id := "theme"),
-
           link(rel := "stylesheet", href := "assets/stylesheets/lib/zenburn.css")
-        ), // Fermeture head
+        ),
 
         body(
           div(`class` := "reveal",
             div(`class` := "slides", array)
           ),
           script(src := "assets/javascripts/lib/head.min.js")
-        ), // Fermeture body
+        ),
+
         script(src := "assets/javascripts/reveal.js")
-      ), // Fermeture html
+      ),
+
       script(scala.io.Source.fromFile("examples/public/reveal_initialize.txt").mkString)
-    ) // Fermeture Seq
+    )
 
   def slide(content: scalatags.Text.Modifier*) =
     section(content)
@@ -166,18 +163,13 @@ object Dsl {
       )
     )
 
+  def questionQRcode(question: String) =
+    img(
+      sourceAttr("https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=http://monserver.com/"+question)
+    )
 
-
-    def questionQRcode(question: String) =
-      img(
-        sourceAttr("https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=http://monserver.com/"+question)
-      )
-
-    def answersChart(number: String, chartType: String) =
-      canvas( attr("data-chart"):=chartType,
-        scala.io.Source.fromFile("examples/public/charts/"+number+".txt").mkString
-      )
-
-
-
+  def answersChart(number: String, chartType: String) =
+    canvas( attr("data-chart"):=chartType,
+      scala.io.Source.fromFile("examples/public/charts/"+number+".txt").mkString
+    )
 }

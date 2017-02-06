@@ -1,14 +1,11 @@
 package views
 
 import java.io.{File, PrintWriter}
-
-import controllers.PresentationController
 import play.api.db.Database
 
 object AnswerView {
 
   import dsl.Dsl._
-
   import scalatags.Text.all._
 
   def apply(title: String, theme: String, question: String, reponse: String, number: String, db: Database) = {
