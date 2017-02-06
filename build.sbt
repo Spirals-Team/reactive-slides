@@ -26,6 +26,9 @@ def project(id: String, versionV: String) = Project(id = id, base = file(id))
     )
   )
 
+// loads the Play project at sbt startup
+onLoad in Global := (Command.process("project examples", _: State)) compose (onLoad in Global).value
+
 lazy val examples = project("examples", appVersion).enablePlugins(PlayScala).dependsOn(framework)
 
 lazy val framework = project("framework", appVersion)
