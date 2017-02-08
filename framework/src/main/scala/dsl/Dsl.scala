@@ -163,12 +163,12 @@ object Dsl {
       )
     )
 
-  def questionQRcode(question: String) =
+  def generateQuestionQRCode(question: String) =
     img(
       sourceAttr("https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=http://monserver.com/"+question)
     )
 
-  def answersChart(number: String, chartType: String) =
+  def displayGraph(number: String, chartType: String) =
     canvas( attr("data-chart"):=chartType,
       scala.io.Source.fromFile("examples/public/charts/"+number+".txt").mkString
     )
