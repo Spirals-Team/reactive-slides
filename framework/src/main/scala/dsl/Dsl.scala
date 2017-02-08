@@ -292,11 +292,11 @@ object Dsl {
     )
 
   /**
-    * Affiche un QR code qui donne accès à un questionnaire défini par la fonction survey(...)
+    * Génère et affiche un QR code qui donne accès à un questionnaire défini par la fonction survey(...)
     * @param question Le numéro/intitulé de la question sous la forme "Question1", "Question2", "Question3"...
     * @return
     */
-  def questionQRcode(question: String) =
+  def generateQuestionQRCode(question: String) =
     img(
       sourceAttr("https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=http://monserver.com/"+question)
     )
@@ -307,7 +307,7 @@ object Dsl {
     * @param chartType Le type de graphe souhaité, il s'agit ici des types proposés par le plugin Chart.js
     * @return
     */
-  def answersChart(number: String, chartType: String) =
+  def displayGraph(number: String, chartType: String) =
     canvas( attr("data-chart"):=chartType,
       scala.io.Source.fromFile("examples/public/charts/"+number+".txt").mkString
     )

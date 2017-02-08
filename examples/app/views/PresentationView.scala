@@ -7,15 +7,15 @@ object PresentationView {
   def apply(title: String, theme: String) = {
     presentation(title, theme,
       slide(
-        questionQRcode("Question1")
+        generateQuestionQRCode("Question1")
       ),
 
       slide(
-        questionQRcode("Question2")
+        generateQuestionQRCode("Question2")
       ),
 
       slide(
-        answersChart("Question2", "pie")
+        displayGraph("Question2", "pie")
       ),
 
       slide(
