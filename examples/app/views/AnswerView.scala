@@ -8,7 +8,7 @@ object AnswerView {
   import dsl.Dsl._
   import scalatags.Text.all._
 
-  def apply(title: String, theme: String, question: String, reponse: String, number: String, db: Database) = {
+  def apply(title: String, description: String, author: String, theme: String, question: String, reponse: String, number: String, db: Database) = {
 
     val conn = db.getConnection()
     try {
@@ -44,7 +44,7 @@ object AnswerView {
     }
 
     // On affiche un écran de remerciement
-    presentation(title, theme,
+    presentation(title, description, author, theme,
       slide(
         title3("Merci pour votre réponse")
       )

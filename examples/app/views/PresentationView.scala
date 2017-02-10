@@ -4,17 +4,25 @@ object PresentationView {
   import dsl.Dsl._
   import scalatags.Text.all._
 
-  def apply(title: String, theme: String) = {
-    presentation(title, theme,
+  def apply(title: String, description: String, author: String, theme: String) = {
+    presentation(title, description, author, theme,
       slide(
+        title3("Are You Paying Attention ?"),
         generateQuestionQRCode("Question1")
       ),
 
       slide(
+        title3("Which device are you using ?"),
         generateQuestionQRCode("Question2")
       ),
 
       slide(
+        title3("Are You Paying Attention ?"),
+        displayGraph("Question1", "pie")
+      ),
+
+      slide(
+        title3("Which device are you using ?"),
         displayGraph("Question2", "pie")
       ),
 
