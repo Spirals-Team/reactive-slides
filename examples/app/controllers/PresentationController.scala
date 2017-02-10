@@ -1,20 +1,19 @@
 package controllers
 
 import javax.inject.Inject
-import models.QuestionFormService
+import models._
 import play.api.data._
 import play.api.data.Forms._
-import play.api.db._
 import play.api.http._
 import play.api.mvc._
-import views.{AnswerView, PresentationView, MainView, Question1View, Question2View}
+import views._
 
 import scalatags._
 
 /**
   * Manage the interactive presentation
   */
-class PresentationController @Inject()(db: Database, questionFormService: QuestionFormService)(implicit env: play.Environment) extends Controller {
+class PresentationController @Inject()(questionFormService: QuestionFormService)(implicit env: play.Environment) extends Controller {
 
   /**
     * Manage the interactive presentation parameters
@@ -58,10 +57,6 @@ class PresentationController @Inject()(db: Database, questionFormService: Questi
   /**
     * Describe the question form .
     */
-  case class QuestionData(question: String,
-                          response: String,
-                          number: String)
-
   val questionForm = Form(
     mapping(
       "question" -> Forms.text,
@@ -71,11 +66,11 @@ class PresentationController @Inject()(db: Database, questionFormService: Questi
   )
 
   /**
-    * Handle saving answers.
+    * Handle saving answers and rendering the submission confirmation view.
     */
   def saveAnswer = Action { implicit request =>
     val questionData = questionForm.bindFromRequest.get
     questionFormService.extractAnswer(questionData.question, questionData.response, questionData.number)
-    Ok(MainView(AnswerView(presentationTitle, description, author, theme)).toString).withHeaders(CONTENT_TYPE -> ContentTypes.HTML)
+    Ok(MainView(SubmissionConfirmationView(presentationTitle, description, author, theme)).toString).withHeaders(CONTENT_TYPE -> ContentTypes.HTML)
   }
 }

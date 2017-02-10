@@ -4,6 +4,13 @@ import java.io.{File, PrintWriter}
 import javax.inject.Inject
 import play.api.db.Database
 
+/**
+  * The Class representing the questions .
+  */
+case class QuestionData(question: String,
+                        response: String,
+                        number: String)
+
 @javax.inject.Singleton
 class QuestionFormService @Inject()(db: Database){
 
