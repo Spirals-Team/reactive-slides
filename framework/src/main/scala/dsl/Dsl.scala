@@ -247,7 +247,7 @@ object Dsl {
     * @param content La liste des réponses possibles
     * @return
     */
-  def survey(number: String, choices: Int, content: scalatags.Text.Modifier*) =
+  def surveyOf2(number: String, content: scalatags.Text.Modifier*) =
   Seq(
     form(
       title3(
@@ -290,7 +290,7 @@ object Dsl {
     * @param content La liste des réponses possibles
     * @return
     */
-  def survey3(number: String, choices: Int, content: scalatags.Text.Modifier*) =
+  def surveyOf3(number: String, content: scalatags.Text.Modifier*) =
   Seq(
     form(
       title3(
@@ -344,7 +344,7 @@ object Dsl {
     * @param content La liste des réponses possibles
     * @return
     */
-  def survey4(number: String, choices: Int, content: scalatags.Text.Modifier*) =
+  def surveyOf4(number: String, content: scalatags.Text.Modifier*) =
   Seq(
     form(
       title3(
@@ -409,7 +409,7 @@ object Dsl {
     * @param content La liste des réponses possibles
     * @return
     */
-  def survey5(number: String, choices: Int, content: scalatags.Text.Modifier*) =
+  def surveyOf5(number: String, content: scalatags.Text.Modifier*) =
   Seq(
     form(
       title3(

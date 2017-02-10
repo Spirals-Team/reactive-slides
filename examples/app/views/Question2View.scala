@@ -8,7 +8,7 @@ object Question2View {
   def apply(title: String, description: String, author: String, theme: String) = {
     presentation(title, description, author, theme,
       slide(
-        survey3("Question2", 3, "Which device are you using ?","Smartphone", "Tablet", "Laptop")
+        surveyOf3("Question2", 3, "Which device are you using ?","Smartphone", "Tablet", "Laptop")
       )
     )
   }
