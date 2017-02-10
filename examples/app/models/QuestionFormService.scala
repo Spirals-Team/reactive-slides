@@ -11,12 +11,18 @@ case class Question(id: Option[Long] = None,
 @javax.inject.Singleton
 class QuestionFormService @Inject()(db: Database){
 
-  def getQuestion1Answer = {
+  def extractAnswer(question: String, response: String, number: String) = {
     val conn = db.getConnection()
     try {
       val stmt = conn.createStatement
-      val query = "SELECT reponse, COUNT(reponse) as nb FROM question_reponse WHERE question = 'How old are you ?' GROUP BY reponse"
-      val rs = stmt.executeQuery(query)
+
+      // Insert the answer in the database
+      val query = "insert into question_reponse (question,reponse) values ('"+question+"','"+response+"')"
+      stmt.executeUpdate(query)
+
+      // Extract the result from the database and put it in a .txt file.
+      val query2 = "SELECT reponse, COUNT(reponse) as nb FROM question_reponse WHERE question = '"+question+"' GROUP BY reponse"
+      val rs = stmt.executeQuery(query2)
 
       var firstLine = ""
       while (rs.next()) {
@@ -24,29 +30,19 @@ class QuestionFormService @Inject()(db: Database){
       }
       rs.beforeFirst()
 
-      var secondLine = "My first dataset"
+      var secondLine = "Audience Response"
       while (rs.next()) {
         secondLine += ", " + rs.getString("nb")
       }
 
-      val pw = new PrintWriter(new File("examples/public/charts/chart_content.txt"))
+      val yourFile = new File("examples/public/charts/"+number+".txt")
+      yourFile.createNewFile()
+      val pw = new PrintWriter(yourFile)
       pw.write(firstLine + "\n" + secondLine)
       pw.close
 
     } finally {
       conn.close()
     }
-  }
-
-  def saveAnswer(result : String) = {
-    val conn = db.getConnection()
-    try {
-      val stmt = conn.createStatement
-      val query = "insert into question_reponse (question,reponse) values ('Are you working ?','"+result+"')"
-      stmt.executeUpdate(query)
-    } finally {
-      conn.close()
-    }
-    getQuestion1Answer
   }
 }
