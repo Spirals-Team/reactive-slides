@@ -10,9 +10,9 @@ Sommaire
 
    * [Manuel utilisateur](#manuel-utilisateur)  
       * [Installation et configuration](#installation-et-configuration)  
-            * [<i></i> 1. Installation de sbt](#installation-de-sbt)  
-            * [<i></i> 2. Configuration de la base de données](#configuration-de-la-base-de-données)  
-            * [<i></i> 3. Compilation et exécution de l'application](#compilation-et-exécution-de-l-application)
+            * [<i></i> 1. Installation de sbt](#1-installation-de-sbt)  
+            * [<i></i> 2. Configuration de la base de données](#2-configuration-de-la-base-de-données)  
+            * [<i></i> 3. Compilation et exécution de l'application](#3-compilation-et-exécution-de-lapplication)
       * [Création de la présentation](#création-de-la-présentation)  
             * [<i></i> Fichier de la présentation](#-fichier-de-la-présentation)  
             * [<i></i> Paramètres](#-paramètres)  
