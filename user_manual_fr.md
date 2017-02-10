@@ -228,6 +228,7 @@ Pour finir, voici un bon exemple squelette fonctionnel d'une présentation avec 
 En plus de tous ces élements, il est possible d'utiliser n'importe quel autre élement HTML. Vous trouverez une liste très bien documentée de ces élements sur ces pages :   
 - http://www.w3schools.com/tags/ 
 - https://developer.mozilla.org/fr/docs/Web/HTML/Element
+
 Bien évidemment, on peut les écrire en utilisant la syntaxe de notre langage dédié.  
 Par exemple, si on veut écrire un élément <button>, il suffira d'écrire :
 ```
@@ -256,11 +257,12 @@ Nous allons maintenant voir comment mettre en place le système de questions-ré
 - Configuration de la question  
 - Ajout de la question à la présentation  
 - Visualisation des réponses  
+
 La configuration de la question est l'étape la plus fastidieuse. Une fois faite, le reste est très simple.
 
 #### <i class="icon-cog"></i> Configurer une nouvelle question
 
-Pour configurer une nouvelle question, il faudra procéder à trois étapes.
+Pour configurer une nouvelle question, il faudra procéder à quatres étapes.
 
 **1ère étape : Création de la vue de la question**
 
@@ -293,7 +295,9 @@ La première chaîne de caractères correspond à l'intitulé de la question. L'
 
 Le reste correspond à la question et aux réponses, l'ordre est important, la seconde chaîne de caractères de la méthode survey(...) correspond à l'intitulé de la question, toutes les autres chaînes qui suivent sont les différentes réponses possibles pour cette question.
 
-Sachez donc que la méthode survey(...) permet la création d'une diapositive contenant un questionnaire, l'auditoire accédera à celle-ci sur son périphérique après avoir scanné le QR code correspondant.
+> **Note :** Pour le moment, les questions doivent avoir exactement 2 réponses. C'est une contrainte à régler.
+
+Sachez ainsi que la méthode survey(...) permet la création d'une diapositive contenant un questionnaire, l'auditoire accédera à celle-ci sur son périphérique après avoir scanné le QR code correspondant.
 
 Voilà pour cette première étape de la configuration d'une nouvelle question.
 
@@ -333,6 +337,11 @@ Encore une fois, on modifie selon le numéro de la question. Pour les autres que
 
 On a terminé la configuration d'une question, il ne reste plus qu'à ajouter la diapositive avec le QR code et celle pour afficher le graphique des réponses si l'on souhaite montrer les résultats.
 
+**4ème étape : Création du fichier pour les réponses**
+
+Il faut tout simplement créer un fichier texte vide dans **/examples/public/charts/** nommé selon l'intitulé de la question. Par exemple **Question1.txt**  
+C'est dans ce fichier que seront enregistrées les réponses obtenues à l'issue du questionnaire afin de les afficher à l'aide d'un graphe.
+
 #### <i class="icon-comment-empty"></i> Ajouter sa question à la présentation
 
 Pour ajouter sa question à la présentation, il faut créer une diapositive avec un élément generateQuestionQRcode.  
@@ -362,6 +371,7 @@ On peut avoir trois types de graphes : "pie", "bar" et "line".
 Voici un aperçu de chacun de ces graphes :
 
 Un graphe de type "pie" :
+
 ![Image of pie chart](http://i.imgur.com/AtuITJ8.png)
 
 Un graphe de type "bar" : 
