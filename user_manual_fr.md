@@ -720,7 +720,7 @@ La première chaîne de caractères correspond à l'intitulé de la question. L'
 
 Le reste correspond à la question et aux réponses, l'ordre est important, la seconde chaîne de caractères de la méthode survey(...) correspond à l'intitulé de la question, toutes les autres chaînes qui suivent sont les différentes réponses possibles pour cette question.
 
-> **Note :** Pour le moment, les questions doivent avoir exactement 2 réponses. C'est une contrainte à régler.
+> **Note :** Pour le moment, les questions peuvent avoir au plus 5 choix de réponses. C'est une contrainte qui reste à améliorer.
 
 Sachez ainsi que la méthode survey(...) permet la création d'une diapositive contenant un questionnaire, l'auditoire accédera à celle-ci sur son périphérique après avoir scanné le QR code correspondant.
 
@@ -800,12 +800,6 @@ Voici un aperçu de chacun de ces graphes :
 Un graphe de type "pie" :
 
 ![Image of pie chart](http://i.imgur.com/AtuITJ8.png)
-
-Un graphe de type "bar" : 
-A venir...
-
-Un graphe de type "line" :
-A venir...
 
 ----------
 
