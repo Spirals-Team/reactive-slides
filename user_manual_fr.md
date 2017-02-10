@@ -10,9 +10,6 @@ Sommaire
 
    * [Manuel utilisateur](#manuel-utilisateur)  
       * [Installation et configuration](#installation-et-configuration)  
-            * [1. Play avec activator](#1-play-avec-activator)  
-            * [2. Base de données MySQL](#2-base-de-données-mysql)  
-            * [3. Lancer le serveur](#3-lancer-le-serveur)  
       * [Création de la présentation](#création-de-la-présentation)  
             * [<i></i> Fichier de la présentation](#-fichier-de-la-présentation)  
             * [<i></i> Paramètres](#-paramètres)  
@@ -27,37 +24,59 @@ Sommaire
 Installation et configuration
 -------------
 
-#### 1. Play avec activator
+Suivez les instructions dans le fichier README.md pour bien installer et configurer le framework.
+Ci-dessous, vous retrouverez les mêmes instructions en français :
 
-Pour utiliser ce framework, il vous faut avant tout installer le framework **Play avec activator**.  
-Suivez ce lien pour se faire : https://www.playframework.com/download#activator  
-Si l'installation s'est bien passée, vous devriez alors pouvoir faire la commande ```activator``` dans le terminal.
+Pour commencer, cloner le projet.
 
-#### 2. Base de données MySQL
+Pour compiler le projet et exécuter la présentation exemple, suivez ces étapes :
 
-Il faut, ensuite, mettre en place une **base de données MySQL**.  
-Celle-ci doit être créé selon les paramètres spécifiés dans le fichier **/examples/conf/application.conf** en particulier les lignes suivantes (~ lignes 45-50) :
+1. Assurez-vous d'avoir [sbt](http://www.scala-sbt.org/) installé. C'est la plateforme sur laquelle les outils de compilation tourne.  
+2. Configurer la base de données :  
+Pour la présentation exemple, nous avons utilisé un serveur local MySQL. Par défaut, Le port de la base de données est **3306**.
+
+Pour la personnaliser, vous devez modifier les paramètres spécifiés dans le fichier **/examples/conf/application.conf** en particulier les lignes suivantes (~ lignes 45-50) :
+
 
 ```
-# Default database configuration using MySQL database engine
-
 db.default.driver=com.mysql.jdbc.Driver
 db.default.url="jdbc:mysql://localhost:3306/database_name"
 db.default.username=database_username
 db.default.password="database_password"
 ```
 
-Il faut remplacer database_name, database_username et database_password par leurs valeurs correspondantes.
-
-Une fois la base de données créées, pour finir, il est nécessaire d'importer le modèle de données qui se trouve dans le fichier **database.sql** à la racine du projet.  
+Une fois la base de données créée, il est nécessaire d'importer le modèle de données qui se trouve dans le fichier **database.sql** dans **/examples/public/db/**.  
 Plus d'informations pour faire cela : https://dev.mysql.com/doc/refman/5.7/en/mysql-batch-commands.html
 
-#### 3. Lancer le serveur
+1. A partir du dossier du projet, faites les commandes suivantes :
 
-Pour lancer le serveur en local, il vous suffira alors de lancer la commande ```activator start``` à la racine du framework.  
-Par défaut, il vous est alors possible de voir la présentation à l'adresse ```http://localhost:9000``` une fois le serveur bien lancé.
+a - Supprimer tous les fichiers générés et compiler les fichiers sources :
+```
+sbt clean compile 
+```
+ 
+ b - Compiler et exécuter tous les tests :
+```
+sbt test  
+```
+ 
+ c - Créer un fichier jar contenant les fichiers et les classes compilées :
+```
+sbt package 
+```
+  
+  
 
-Plus tard, il sera nécessaire de mettre en place votre présentation sur un serveur en ligne pour pouvoir utiliser l'aspect intéractif de l'application.
+> **Note :** Si vous changez le fichier build.sbt, vous devrez recharger le projet. Vous pouvez faire cela avec la commande `sbt reload`
+
+4. Pour lancer la présentation exemple, faites la commande suivante : 
+```
+sbt run
+```
+  
+  Cela lancera la classe principale du projet dans la même machine virtuelle que sbt.
+  
+5. Il vous est possible de voir la présentation à l'adresse [http://localhost:9000](http://localhost:9000). Vous pouvez changer le code qui se trouve dans **/examples/app/** et le navigateur devrait se rafraîchir automatiquement quand vous sauvegardez les fichers.
 
 
 ----------
@@ -616,7 +635,6 @@ Pour finir, voici un bon exemple squelette fonctionnel d'une présentation avec 
 		<td>Exemple : slide(generateQuestionQRCode("Question1"))</td>
 	</tr>
 	
-	<tr><td></td></tr>
 </table>
 
 
