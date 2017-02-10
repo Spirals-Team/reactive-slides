@@ -4,6 +4,13 @@ object PresentationView {
   import dsl.Dsl._
   import scalatags.Text.all._
 
+  /**
+    * C'est à l'intérieur de cette fonction que l'on définie notre présentation, ci-dessous se trouve une présentation exemple
+    * @param title Le titre de la page de la présentation, ce sera le texte écrit sur l'onglet de la page web de la présentation et sur la fenetre du navigateur si l'onglet est selectionné
+    * @param theme Le thème utilisé pour la présentation, il s'agit des thèmes proposés par Reveal.js (ex: "black", "white", "league", "beige", "sky"...)
+    *              Liste complète des thèmes : https://github.com/hakimel/reveal.js#theming
+    * @return
+    */
   def apply(title: String, theme: String) = {
     presentation(title, theme,
       slide(
@@ -15,6 +22,7 @@ object PresentationView {
       ),
 
       slide(
+        h2("Which device ?"),
         displayGraph("Question2", "pie")
       ),
 
@@ -39,15 +47,17 @@ object PresentationView {
             attr("enabled"):="enabled",
             attr("href"):="#",
             img(
-              attr("alt"):="Down arrow",
+              altAttr("Down arrow"),
               sourceAttr("https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png")
             )
           )
         ),
+
         slide(
           title2("Basement level 1"),
           textLine("Nested slides are useful for adding additional detail underneath a high level horizontal slide.")
         ),
+
         slide(
           title2("Basement level 2"),
           textLine("That's it, time to go back up."),
@@ -55,7 +65,7 @@ object PresentationView {
           alink(
             linkURL("#/2"),
             img(
-              attr("alt"):="Up arrow",
+              altAttr("Up arrow"),
               attr("style"):="transform: rotate(180deg);",
               sourceAttr("https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png")
             )
@@ -170,16 +180,18 @@ object PresentationView {
             attr("class"):=" enabled",
             linkURL("#"),
             img(
-              attr("alt"):="Down arrow",
+              altAttr("Down arrow"),
               attr("src"):="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png"
             )
           )
         ),
+
         slide(
           attr("data-background"):="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png",
           title2("Image Backgrounds"),
           codeQuote("<section data-background=\"image.png\">")
         ),
+
         slide(
           attr("data-background"):="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png",
           attr("data-background-repeat"):="repeat",
@@ -187,6 +199,7 @@ object PresentationView {
           title2("Tiled Backgrounds"),
           codeQuote("<section data-background=\"image.png\" data-background-repeat=\"repeat\" data-background-size=\"100px\">")
         ),
+
         slide(
           attr("data-background-video"):="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm",
           div(
@@ -195,6 +208,7 @@ object PresentationView {
             codeQuote("<section data-background-video=\"video.mp4,video.webm\">")
           )
         ),
+
         slide(
           attr("data-background"):="http://i.giphy.com/90F8aUepslB84.gif",
           title2("... and GIFs!")

@@ -14,8 +14,9 @@ object Dsl {
   /**
     * Création d'une présentation, on utilise qu'une seule fois cette fonction.
     * @param titleText Le titre de la page internet
-    * @param theme Le thème de la présentation, il s'agit des thèmes proposés par Reveal.js
-    * @param array Le contenu de la présentation, on retrouve toutes les slides et leurs contenus
+    * @param theme Le thème de la présentation, il s'agit des thèmes proposés par Reveal.js (ex: "black", "white", "league", "beige", "sky"...)
+    *              Liste complète des thèmes : https://github.com/hakimel/reveal.js#theming
+    * @param array Le contenu de la présentation, on retrouve toutes les diapositives et leurs contenus
     * @return
     */
   def presentation(titleText: String, theme: String, array: scalatags.Text.Modifier*) =
@@ -58,7 +59,7 @@ object Dsl {
 
   /**
     * Titre le plus grand (1)
-    * @param content Le contenu du titre, le plus souvent du texte
+    * @param content Le contenu du titre, le plus souvent une chaine de caractères
     * @return
     */
   def title1(content: scalatags.Text.Modifier*) =
@@ -66,7 +67,7 @@ object Dsl {
 
   /**
     * Titre grand (2)
-    * @param content Le contenu du titre, le plus souvent du texte
+    * @param content Le contenu du titre, le plus souvent une chaine de caractères
     * @return
     */
   def title2(content: scalatags.Text.Modifier*) =
@@ -74,7 +75,7 @@ object Dsl {
 
   /**
     * Titre moyen (3)
-    * @param content Le contenu du titre, le plus souvent du texte
+    * @param content Le contenu du titre, le plus souvent une chaine de caractères
     * @return
     */
   def title3(content: scalatags.Text.Modifier*) =
@@ -82,7 +83,7 @@ object Dsl {
 
   /**
     * Titre petit (4)
-    * @param content Le contenu du titre, le plus souvent du texte
+    * @param content Le contenu du titre, le plus souvent une chaine de caractères
     * @return
     */
   def title4(content: scalatags.Text.Modifier*) =
@@ -90,7 +91,7 @@ object Dsl {
 
   /**
     * Titre le plus petit (5)
-    * @param content Le contenu du titre, le plus souvent du texte
+    * @param content Le contenu du titre, le plus souvent une chaine de caractères
     * @return
     */
   def title5(content: scalatags.Text.Modifier*) =
@@ -98,7 +99,7 @@ object Dsl {
 
   /**
     * Création d'un paragraphe
-    * @param content Le contenu du paragraphe, le plus souvent du texte
+    * @param content Le contenu du paragraphe, le plus souvent une chaine de caractères
     * @return
     */
   def textLine(content: scalatags.Text.Modifier*) =
@@ -106,7 +107,7 @@ object Dsl {
 
   /**
     * Création d'un paragraphe mais qui n'apparaitra qu'après avoir fait "suivant" (flèche vers la diapo suivante)
-    * @param content Le contenu du paragraphe, le plus souvent du texte
+    * @param content Le contenu du paragraphe, le plus souvent une chaine de caractères
     * @return
     */
   def textLineFragment(content: scalatags.Text.Modifier*) =
@@ -114,7 +115,7 @@ object Dsl {
 
   /**
     * Création d'un bloc mais qui n'apparaitra qu'après avoir fait "suivant" (flèche vers la diapo suivante)
-    * @param content Le contenu du bloc, le plus souvent du texte
+    * @param content Le contenu du bloc, le plus souvent une chaine de caractères
     * @return
     */
   def textFragment(content: scalatags.Text.Modifier*) =
@@ -161,7 +162,7 @@ object Dsl {
 
   /**
     * Création d'un élément d'une liste
-    * @param content Le contenu de l'élément de liste : le plus souvent du texte
+    * @param content Le contenu de l'élément de liste : le plus souvent une chaine de caractères
     * @return
     */
   def listItem(content: scalatags.Text.Modifier*) =
@@ -169,14 +170,14 @@ object Dsl {
 
   /**
     * Création d'un lien
-    * @param content Le contenu du lien
+    * @param content Le contenu du lien, contient normalement un élément linkURL
     * @return
     */
   def alink(content: scalatags.Text.Modifier*) =
     a(content)
 
   /**
-    * Création d'une ligne de tableau
+    * Création d'une ligne de tableau, doit être placé dans un élément table
     * @param content Le contenu de la ligne de tableau, il s'agira normalement d'un ou de plusieurs tableBox(...)
     * @return
     */
@@ -184,23 +185,23 @@ object Dsl {
     tr(attr("class"):="reveal", content)
 
   /**
-    * Création d'un élément d'entête de tableau
-    * @param content Le contenu de l'élément d'entête de tableau, le plus souvent du texte
+    * Création d'un élément d'entête de tableau, doit être placé dans un élément tableRow
+    * @param content Le contenu de l'élément d'entête de tableau, le plus souvent une chaine de caractères
     * @return
     */
   def tableHead(content: scalatags.Text.Modifier*) =
     th(content)
 
   /**
-    * Création d'un élément de tableau
-    * @param content Le contenu de l'élément de tableau, le plus souvent du texte
+    * Création d'un élément de tableau, doit être placé dans un élément tableRow
+    * @param content Le contenu de l'élément de tableau, le plus souvent une chaine de caractères
     * @return
     */
   def tableBox(content: scalatags.Text.Modifier*) =
     td(content)
 
   /**
-    * Création d'un attribut de lien hypertexte
+    * Création d'un attribut de lien hypertexte, utilisé principalement dans un élément alink
     * @param content L'URL vers lequel le lien pointe
     * @return
     */
@@ -208,12 +209,20 @@ object Dsl {
     attr("href"):=content
 
   /**
-    * Création d'un attribut d'une source
+    * Création d'un attribut source
     * @param content Le chemin vers la source ciblée
     * @return
     */
   def sourceAttr(content: String) =
     attr("src"):=content
+
+  /**
+    * Création d'un attribut alt, peut être placé uniquement dans un élément img
+    * @param content Le texte affiché si l'image d'un élément img ne peut pas être affichée
+    * @return
+    */
+  def altAttr(content: String) =
+    attr("alt"):=content
 
   /**
     * Création d'un bloc pour afficher du code
@@ -249,7 +258,7 @@ object Dsl {
   // il faut réussir à boucler sur le nombre de réponses possibles pour lui créer une radio à chaque itération (tentative avec la fonction answersLoop() plus haut)
   // Sinon on se limite à des questions à 2 réponses à choix unique (sans toucher la fonction survey)
   /**
-    * Création d'une diapositive contenant un questionnaire, le plus souvant c'est une diapositive sur laquelle l'auditoire accède après avoir scanné le QR code
+    * Création d'une diapositive contenant un questionnaire, le plus souvent c'est une diapositive sur laquelle l'auditoire accède après avoir scanné un QR code à partir de generateQuestionQRCode
     * @param number Le numéro/intitulé de la question sous la forme "Question1", "Question2", "Question3"...
     * @param content La liste des réponses possibles
     * @return
@@ -304,7 +313,7 @@ object Dsl {
   /**
     * Affiche un graphe permettant d'afficher les réponses d'une question donnée
     * @param number Le numéro/intitulé de la question sous la forme "Question1", "Question2", "Question3"...
-    * @param chartType Le type de graphe souhaité, il s'agit ici des types proposés par le plugin Chart.js
+    * @param chartType Le type de graphe souhaité, il s'agit ici des types proposés par le plugin Chart.js (ex: "bar", "line", "pie")
     * @return
     */
   def displayGraph(number: String, chartType: String) =

@@ -1,5 +1,3 @@
-https://stackedit.io/editor#!provider=couchdb&id=M7OP5sobwNAh9VomXmgvYJ1M
-
 Manuel utilisateur
 ===================
 
@@ -50,7 +48,7 @@ Plus tard, il sera nécessaire de mettre en place votre présentation sur un ser
 Création de la présentation
 -------------------
 
-Nous allons maintenant voir comment créer une présentation avec ce framework.
+Dans cette partie, il sera expliqué comment créer une présentation avec ce framework.
 
 #### <i class="icon-file"></i> Fichier de la présentation
 
@@ -169,14 +167,19 @@ Pour finir, voici un bon exemple squelette fonctionnel d'une présentation avec 
         )
       ),
 
-      // Diapositive avec une image
+      // Diapositive avec une image et un lien
       slide(
 	      title1("Ma superbe image"),
 	      img(
 		      // Si l'image est introuvable, c'est ça qui sera affiché
-		      attr("alt") := "l'image a disparu",
+		      altAttr("l'image a disparu"),
 		      // Lien vers l'image
 		      sourceAttr("http://site.com/image.png")
+	      ),
+	      alink(
+		      // URL vers lequel le lien pointe
+		      linkURL("https://www.google.fr/"),
+		      "Lien vers le moteur de recherche Google"
 	      )
       ),
 
@@ -191,7 +194,7 @@ Pour finir, voici un bon exemple squelette fonctionnel d'une présentation avec 
 
 #### <i class="icon-list"></i> Liste des éléments de notre langage dédié
 
-| Element                 | Contenu                        | Description              | Exemple
+| Element                 |  Contenu                        | Description              | Exemple
  :-----------------: | :----------------------------: | :------------------: | :------------------:
 | slide | Un ou plusieurs autres éléments qui seront le contenu de la diapositive en question            | Création d'une **diapositive** | slide(title1("Titre de la diapositive"), textLine("Texte de la diapositive")) |
 | title1           | Un ou plusieurs éléments, le plus souvent une chaîne de caractères            | Création d'un **titre** (le plus gros) | title1("Mon gros titre")
@@ -208,7 +211,39 @@ Pour finir, voici un bon exemple squelette fonctionnel d'une présentation avec 
 | unorderedList           | Un ou plusieurs éléments, le plus souvent une suite d'éléments listItem | Création d'une **liste à puces** | unorderedList(listItem("1er élément"), listItem("2ème élément"))
 | orderedList           | Un ou plusieurs éléments, le plus souvent une suite d'éléments listItem | Création d'une **liste numérotée** | orderedList(listItem("1er élément"), listItem("2ème élément"))
 | listItem           | Un ou plusieurs éléments, le plus souvent une chaîne de caractères | Création d'un **élément d'une liste** | listItem("un élément de liste")
+| alink           | Un ou plusieurs éléments, avec normalement un élément linkURL | Création d'un **lien** | alink(linkURL("https://www.google.fr/"), "Lien externe")
+| tableRow           | Un ou plusieurs éléments, contient normalement un ou des éléments tableBox | Création d'une **ligne de tableau**, doit être placé dans un élément table | tableRow(tableBox("Un élement de ma ligne"), tableBox("Un second élément de ma ligne"))
+| tableHead           | Un ou plusieurs éléments, le plus souvent une chaîne de caractères | Création d'un **élément d'entête de tableau**, doit être placé dans un élément tableRow | tableHead("Entête de tableau")
+| tableBox           | Un ou plusieurs éléments, le plus souvent une chaîne de caractères | Création d'un **élément de tableau**, doit être placé dans un élément tableRow | tableBox("Le contenu d'une case de tableau")
+| linkURL           | Chaîne de caractères, il s'agit de l'URL vers lequel le lien pointe | Création d'un **attribut de lien hypertexte**, principalement utilisé dans un élément alink | linkURL("https://www.google.fr/")
+| sourceAttr           | Chaîne de caractères, il s'agit du chemin vers la source ciblée | Création d'un **attribut source**, doit être placé dans un élément, par exemple, un élement img | img(sourceAttr("https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png"), altAttr("Up arrow"))
+| altAttr           | Chaîne de caractères, il s'agit du texte à afficher pour un élément img si l'image ne peut pas être affichée | Création d'un **attribut alt**, peut être placé uniquement dans un élément img | img(sourceAttr("https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png"), altAttr("Up arrow"))
+| codeQuote           | Chaîne de caractères, il s'agit du code à afficher | Création d'un **bloc pour afficher du code** | codeQuote("function linkify( selector ) {\n\tif( supports3DTransforms ) {\n\t\tvar nodes = document.querySelectorAll( selector );\n\t}\n}")
+| generateQuestionQRCode           | Chaîne de caractères correspondant au numéro/intitulé de la question sous la forme "Question1", "Question2"... | Génère et affiche un **QR code qui donne accès à un questionnaire** | slide(generateQuestionQRCode("Question1"))
+| displayGraph           | Chaîne de caractères correspondant au numéro/intitulé de la question sous la forme "Question1", "Question2"... et une chaîne de caractère correspondant au type de graphe souhaité, il s'agit des types proposés par Chart.js (ex : "bar", "line", "pie") | Affiche un **graphe affichant les réponses d'une question donnée** | slide(generateQuestionQRCode("Question1"))
 
+
+
+En plus de tous ces élements, il est possible d'utiliser n'importe quel autre élement HTML. Vous trouverez une liste très bien documentée de ces élements sur ces pages : 
+- http://www.w3schools.com/tags/ 
+- https://developer.mozilla.org/fr/docs/Web/HTML/Element
+Bien évidemment, on peut les écrire en utilisant la syntaxe de notre langage dédié.
+Par exemple, si on veut écrire un élément <button>, il suffira d'écrire :
+```
+button("Texte du bouton")
+```
+Au lieu de :
+```
+<button>Texte du bouton</button>
+```
+De plus, pour ajouter un attribut class à un élement, il faudra écrire :
+```
+attr("class"):="myClass"
+```
+Par exemple, si on veut ajouter cet attribut à notre élément button précédent :
+```
+button(attr("class"):="myClass", "Texte du bouton")
+```
 
 ----------
 
@@ -216,109 +251,121 @@ Pour finir, voici un bon exemple squelette fonctionnel d'une présentation avec 
 Poser une question et utiliser les réponses
 -------------
 
-Intro... (partie non terminée)
+Nous allons maintenant voir comment mettre en place le système de questions-réponses entre le présentateur et l'auditoire. Cela va se faire en trois temps :
+- Configuration de la question
+- Ajout de la question à la présentation
+- Visualisation des réponses
+La configuration de la question est l'étape la plus fastidieuse. Une fois faite, le reste est très simple.
 
 #### <i class="icon-cog"></i> Configurer une nouvelle question
 
-En trois étapes
-: Création de la vue dans /examples/app/views/ sous la forme "QuestionXView.scala", X étant le numéro de la question  
-: Importation et définition dans le contrôleur, c'est le fichier /examples/app/controllers/PresentationController.scala On importe la vue et on créé une fonction qui renvoie vers la vue
-: Mise en place du routing dans le fichier /examples/conf/routes On associe le chemin de l'URL souhaitée à la fonction définie dans le contrôleur
+Pour configurer une nouvelle question, il faudra procéder à trois étapes.
+
+**1ère étape : Création de la vue de la question**
+
+Tout d'abord, il faut créer la vue de la question. C'est à dire, créer un fichier dans /examples/app/views/ dont le nom sera sous la forme "QuestionXView.scala", X étant le numéro de la question.
+
+Le contenu de ce fichier doit ressembler à ça : 
+```
+package views
+
+object Question1View {
+
+  import dsl.Dsl._
+  import scalatags.Text.all._
+
+  def apply(title: String, theme: String) = {
+    presentation(title, theme,
+      slide(
+        survey("Question1", "Are you working ?","Yes", "No")
+      )
+    )
+  }
+}
+```
+**Important :**
+Il faut s'assurer à la ligne 3 que le nom de l'objet correspond bien au nom du fichier (sans l'extension), dans notre exemple, le fichier s’appellerait donc "Question1View.scala".
+
+Ensuite, la seule chose à modifier est le contenu de la méthode survey(...). 
+La première chaîne de caractères correspond à l'intitulé de la question. L'idéal est de le faire correspondre au nom du fichier ou de l'objet sans le "View" à la fin, c'est pourquoi dans notre exmple, on a "Question1". 
+
+Le reste correspond à la question et aux réponses, l'ordre est important, la seconde chaîne de caractères de la méthode survey(...) correspond à l'intitulé de la question, toutes les autres chaînes qui suivent sont les différentes réponses possibles pour cette question.
+
+Sachez donc que la méthode survey(...) permet la création d'une diapositive contenant un questionnaire, l'auditoire accédera à celle-ci sur son périphérique après avoir scanné le QR code correspondant.
+
+Voilà pour cette première étape de la configuration d'une nouvelle question.
+
+**2ème étape : Importation et définition dans le contrôleur**
+
+A cette étape, on va modifier le contrôleur. C'est le fichier /examples/app/controllers/PresentationController.scala 
+*En premier lieu :*
+On importe la vue, pour se faire, on modifie la ligne commençant par "import views.{" qui doit se trouver au début du fichier du contrôleur. 
+On va ajouter le nom du fichier de la vue créé à l'étape précédente. Par exemple, si la ligne ressemble à :
+```
+import views.{AnswerView, PresentationView, MainView}
+```
+On la modifiera pour qu'elle ressemble à :
+```
+import views.{AnswerView, PresentationView, MainView, Question1View}
+```
+Dans la cas où on ajoute Question1View.
+
+*En second lieu :*
+On définit cette vue dans le contrôleur, il s'agit d'ajouter dans "class PresentationController ... {" :
+```
+def showQuestion1 = {
+	ok(Question1View(presentationTitle, theme))
+}
+```
+Encore une fois, dans cette exemple, c'est dans le cas où l'on ajoute Question1View. Idéalement, il faut que l'intitulé de la définition soit numéroté comme la vue, ici par exemple, on a "showQuestion1".
+
+**3ème étape : Mise en place du routing**
+
+On met en place le routing dans le fichier /examples/conf/routes
+On associe la chemin de l'URL souhaitée à la fonction définie dans le contrôleur. C'est à dire, on ajouter la ligne suivante au fichier de routing :
+```
+GET	/Question1	@controllers.PresentationController.showQuestion1
+```
+Encore une fois, on modifie selon le numéro de la question. Pour les autres questions, on aura /Question2 et showQuestion2, /Question3 et showQuestion3, etc.
+
+On a terminé la configuration d'une question, il ne reste plus qu'à ajouter la diapositive avec le QR code et celle pour afficher le graphique des réponses si l'on souhaite montrer les résultats.
 
 #### <i class="icon-comment-empty"></i> Ajouter sa question à la présentation
 
+Pour ajouter sa question à la présentation, il faut créer une diapositive avec un élément generateQuestionQRcode. On aura alors une diapositive avec un QR code qui peut être scanné par l'auditoire. Voici un exemple de code pour cela :
+```
 slide(
-        questionQRcode("Question1")
-      ),
+	generateQuestionQRcode("Question1")
+)
+```
+La chaîne de caractères dans l'élément generateQuestionQRcode correspond à l'intitulé de la question à laquelle l'auditoire va répondre.
 
-#### <i class="icon-reply"></i> Exploiter les réponses
-A l'aide d'un graphe..
-      slide(
-        answersChart("Question1", "pie")
-      ),
+#### <i class="icon-reply"></i> Visualiser les réponses
+
+Si vous souhaitez montrer les réponses obtenues à l'auditoire, cela est possible à travers plusieurs types de graphes. Pour cela, on créé une diapositive avec un élément displayChart. Un exemple de code :
+```
+slide(
+	displayChart("Question1", "pie")
+)
+```
+On a deux chaîne de caractères dans l'élément displayChart.
+Le premier correspond à l'intitulé de la question dont on veut afficher les réponses.
+Le second correspond au type de graphe que l'on souhaite utiliser. 
+On peut avoir trois types de graphes :
+"bar", "line" et "pie".
+Voici un aperçu de chacun de ces graphes :
+
+Un graphe de type "bar" : 
+![Image of bar chart](https://octodex.github.com/images/yaktocat.png)
+
+Un graphe de type "line" :
+![Image of line chart](https://octodex.github.com/images/yaktocat.png)
+
+Un graphe de type "pie" :
+![Image of pie chart](https://octodex.github.com/images/yaktocat.png)
 
 ----------
 
-(La suite ne sera pas dans le rapport - peut-être utile pour rédiger ce qui reste)
 
-Markdown Extra
---------------------
-
-
-### Tables
-
-**Markdown Extra** has a special syntax for tables:
-
-Item     | Value
--------- | ---
-Computer | $1600
-Phone    | $12
-Pipe     | $1
-
-You can specify column alignment with one or two colons:
-
-| Item     | Value | Qty   |
-| :------- | ----: | :---: |
-| Computer | $1600 |  5    |
-| Phone    | $12   |  12   |
-| Pipe     | $1    |  234  |
-
-
-### Fenced code blocks
-
-GitHub's fenced code blocks are also supported with **Highlight.js** syntax highlighting:
-
-```
-// Foo
-var bar = 0;
-```
-
-
-
-### Footnotes
-
-You can create footnotes like this[^footnote].
-
-  [^footnote]: Here is the *text* of the **footnote**.
-
-
-### SmartyPants
-
-SmartyPants converts ASCII punctuation characters into "smart" typographic punctuation HTML entities. For example:
-
-|                  | ASCII                        | HTML              |
- ----------------- | ---------------------------- | ------------------
-| Single backticks | `'Isn't this fun?'`            | 'Isn't this fun?' |
-| Quotes           | `"Isn't this fun?"`            | "Isn't this fun?" |
-| Dashes           | `-- is en-dash, --- is em-dash` | -- is en-dash, --- is em-dash |
-
-
-### UML diagrams
-
-You can also render sequence diagrams like this:
-
-```sequence
-Alice->Bob: Hello Bob, how are you?
-Note right of Bob: Bob thinks
-Bob-->Alice: I am good thanks!
-```
-
-And flow charts like this:
-
-```flow
-st=>start: Start
-e=>end
-op=>operation: My Operation
-cond=>condition: Yes or No?
-
-st->op->cond
-cond(yes)->e
-cond(no)->op
-```
-
-> **Note:** You can find more information:
-
-> - about **Sequence diagrams** syntax [here][7],
-> - about **Flow charts** syntax [here][8].
 
 
