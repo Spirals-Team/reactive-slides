@@ -13,14 +13,17 @@ To build the project and run the presentation example , follow these steps :
 
 1. Ensure that [sbt](http://www.scala-sbt.org/) is installed. This provides the platform on which the build tooling runs. 
 2. Setup a database :
-
 For the example presentation, we used a local MySQL server. The databasePort by default is **3306** .
 
-To customize your configuration you need to browse the `application.conf` file and save your personal database parameters:
+To customize it, you need to browse the `application.conf` file and save your default database configuration using MySQL database engine or any other engine.
 
-- db.default.url : "jdbc:mysql://localhost:**yourDatabasePort**/**yourDatabaseName**"
-- db.default.username : **yourDatabaseUserName**
-- db.default.password : "**yourDatabasePassword**"
+
+ ```
+db.default.driver=com.mysql.jdbc.Driver
+db.default.url="jdbc:mysql://localhost:3306/database_name"
+db.default.username=database_username
+db.default.password="database_password"
+ ```
 
 > **Note:** Use the database.sql file to import the database model. You can find it in `examples/public/db`.
 
