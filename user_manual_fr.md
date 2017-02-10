@@ -8,21 +8,21 @@ L'objectif de ce manuel est d'expliquer comment mettre en place une présentatio
 Sommaire
 -------------
 
-   * [Manuel utilisateur](#manuel-utilisateur)
-      * [Installation et configuration](#installation-et-configuration)
-            * [1. Play avec activator](#1-play-avec-activator)
-            * [2. Base de données MySQL](#2-base-de-données-mysql)
-            * [3. Lancer le serveur](#3-lancer-le-serveur)
-      * [Création de la présentation](#création-de-la-présentation)
-            * [<i></i> Fichier de la présentation](#-fichier-de-la-présentation)
-            * [<i></i> Paramètres](#-paramètres)
-            * [<i></i> Ecrire sa présentation](#-ecrire-sa-présentation)
-            * [<i></i> Exemple](#-exemple)
-            * [<i></i> Liste des éléments de notre langage dédié](#-liste-des-éléments-de-notre-langage-dédié)
-      * [Poser une question et utiliser les réponses](#poser-une-question-et-utiliser-les-réponses)
-            * [<i></i> Configurer une nouvelle question](#-configurer-une-nouvelle-question)
-            * [<i></i> Ajouter sa question à la présentation](#-ajouter-sa-question-à-la-présentation)
-            * [<i></i> Visualiser les réponses](#-visualiser-les-réponses)
+   * [Manuel utilisateur](#manuel-utilisateur)  
+      * [Installation et configuration](#installation-et-configuration)  
+            * [1. Play avec activator](#1-play-avec-activator)  
+            * [2. Base de données MySQL](#2-base-de-données-mysql)  
+            * [3. Lancer le serveur](#3-lancer-le-serveur)  
+      * [Création de la présentation](#création-de-la-présentation)  
+            * [<i></i> Fichier de la présentation](#-fichier-de-la-présentation)  
+            * [<i></i> Paramètres](#-paramètres)  
+            * [<i></i> Ecrire sa présentation](#-ecrire-sa-présentation)  
+            * [<i></i> Exemple](#-exemple)  
+            * [<i></i> Liste des éléments de notre langage dédié](#-liste-des-éléments-de-notre-langage-dédié)  
+      * [Poser une question et utiliser les réponses](#poser-une-question-et-utiliser-les-réponses)  
+            * [<i></i> Configurer une nouvelle question](#-configurer-une-nouvelle-question)  
+            * [<i></i> Ajouter sa question à la présentation](#-ajouter-sa-question-à-la-présentation)  
+            * [<i></i> Visualiser les réponses](#-visualiser-les-réponses)  
 
 Installation et configuration
 -------------
@@ -212,36 +212,379 @@ Pour finir, voici un bon exemple squelette fonctionnel d'une présentation avec 
 
 #### <i class="icon-list"></i> Liste des éléments de notre langage dédié
 
-| Element                 |  Contenu                        | Description              | Exemple
- :-----------------: | :----------------------------: | :------------------: | :------------------:
-| slide | Un ou plusieurs autres éléments qui seront le contenu de la diapositive en question            | Création d'une **diapositive** | slide(title1("Titre de la diapositive"), textLine("Texte de la diapositive")) |
-| title1           | Un ou plusieurs éléments, le plus souvent une chaîne de caractères            | Création d'un **titre** (le plus gros) | title1("Mon gros titre")
-| title2           | Un ou plusieurs éléments, le plus souvent une chaîne de caractères | Création d'un **titre** (plus petit que title1) | title2("Mon titre")
-| title3           | Un ou plusieurs éléments, le plus souvent une chaîne de caractères | Création d'un **titre** (plus petit que title2) | title3("Mon titre moyen")
-| title4           | Un ou plusieurs éléments, le plus souvent une chaîne de caractère | Création d'un **titre** (plus petit que title3) | title4("Mon petit titre")
-| title5           | Un ou plusieurs éléments, le plus souvent une chaîne de caractères | Création d'un **titre** (plus petit que title4) | title5("Mon plus petit titre")
-| textLine           | Un ou plusieurs éléments, le plus souvent une chaîne de caractères | Création d'une **ligne de texte** (provoque un retour à la ligne) | textLine("Une ligne de texte")
-| textLineFragment           | Un ou plusieurs éléments, le plus souvent une chaîne de caractères | Création d'un **fragment de ligne de texte** (provoque un retour à la ligne) mais qui apparaît après, lorsqu'on avance dans la présentation | textLineFragment("Ligne de texte qui apparaît après")
-| textFragment           | Un ou plusieurs éléments, le plus souvent une chaîne de caractères | Création d'un **fragment de texte** (sans retour à la ligne) mais qui apparaît après, lorsqu'on avance dans la présentation | textFragment("text qui apparaît plus tard")
-| italic           | Chaîne de caractères | Met le texte en **italique** | italic("Texte en italique")
-| bold           | Chaîne de caractères | Met le texte en **gras** | bold("Texte en gras")
-| emptyLine           | Aucun | Pour **sauter une ligne** | emptyLine
-| unorderedList           | Un ou plusieurs éléments, le plus souvent une suite d'éléments listItem | Création d'une **liste à puces** | unorderedList(listItem("1er élément"), listItem("2ème élément"))
-| orderedList           | Un ou plusieurs éléments, le plus souvent une suite d'éléments listItem | Création d'une **liste numérotée** | orderedList(listItem("1er élément"), listItem("2ème élément"))
-| listItem           | Un ou plusieurs éléments, le plus souvent une chaîne de caractères | Création d'un **élément d'une liste** | listItem("un élément de liste")
-| alink           | Un ou plusieurs éléments, avec normalement un élément linkURL | Création d'un **lien** | alink(linkURL("https://www.google.fr/"), "Lien externe")
-| tableRow           | Un ou plusieurs éléments, contient normalement un ou des éléments tableBox | Création d'une **ligne de tableau**, doit être placé dans un élément table | tableRow(tableBox("Un élement de ma ligne"), tableBox("Un second élément de ma ligne"))
-| tableHead           | Un ou plusieurs éléments, le plus souvent une chaîne de caractères | Création d'un **élément d'entête de tableau**, doit être placé dans un élément tableRow | tableHead("Entête de tableau")
-| tableBox           | Un ou plusieurs éléments, le plus souvent une chaîne de caractères | Création d'un **élément de tableau**, doit être placé dans un élément tableRow | tableBox("Le contenu d'une case de tableau")
-| linkURL           | Chaîne de caractères, il s'agit de l'URL vers lequel le lien pointe | Création d'un **attribut de lien hypertexte**, principalement utilisé dans un élément alink | linkURL("https://www.google.fr/")
-| sourceAttr           | Chaîne de caractères, il s'agit du chemin vers la source ciblée | Création d'un **attribut source**, doit être placé dans un élément, par exemple, un élement img | img(sourceAttr("https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png"), altAttr("Up arrow"))
-| altAttr           | Chaîne de caractères, il s'agit du texte à afficher pour un élément img si l'image ne peut pas être affichée | Création d'un **attribut alt**, peut être placé uniquement dans un élément img | img(sourceAttr("https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png"), altAttr("Up arrow"))
-| codeQuote           | Chaîne de caractères, il s'agit du code à afficher | Création d'un **bloc pour afficher du code** | codeQuote("function linkify( selector ) {\n\tif( supports3DTransforms ) {\n\t\tvar nodes = document.querySelectorAll( selector );\n\t}\n}")
-| generateQuestionQRCode           | Chaîne de caractères correspondant au numéro/intitulé de la question sous la forme "Question1", "Question2"... | Génère et affiche un **QR code qui donne accès à un questionnaire** | slide(generateQuestionQRCode("Question1"))
-
 <table>
 
+<tr>
+		<td rowspan="3">slide</td>
+		<td>Création d'une <b>diapositive</b></td>
+		
+	</tr>
+	<tr>
+		
+		<td>Contenu : Un ou plusieurs autres éléments qui seront le contenu de la diapositive en question</td>
+	</tr>
 	
+	<tr>
+		<td>Exemple : slide(title1("Titre de la diapositive"), textLine("Texte de la diapositive"))</td>
+	</tr>
+	<tr><td></td></tr>
+
+<tr>
+		<td rowspan="3">title1</td>
+		<td>Création d'un <b>titre</b> (le plus gros)</td>
+		
+	</tr>
+	<tr>
+		
+		<td>Contenu : Un ou plusieurs éléments, le plus souvent une chaîne de caractères</td>
+	</tr>
+	
+	<tr>
+		<td>Exemple : title1("Mon gros titre")</td>
+	</tr>
+	
+	<tr><td></td></tr>
+
+<tr>
+		<td rowspan="3">title2</td>
+		<td>Création d'un <b>titre</b> (plus petit que title1)</td>
+		
+	</tr>
+	<tr>
+		
+		<td>Contenu : Un ou plusieurs éléments, le plus souvent une chaîne de caractères</td>
+	</tr>
+	
+	<tr>
+		<td>Exemple : title2("Mon titre")</td>
+	</tr>
+	
+	<tr><td></td></tr>
+
+<tr>
+		<td rowspan="3">title3</td>
+		<td>Création d'un <b>titre</b> (plus petit que title2)</td>
+		
+	</tr>
+	<tr>
+		
+		<td>Contenu : Un ou plusieurs éléments, le plus souvent une chaîne de caractères</td>
+	</tr>
+	
+	<tr>
+		<td>Exemple : title3("Mon titre moyen")</td>
+	</tr>
+
+	<tr><td></td></tr>
+
+<tr>
+		<td rowspan="3">title4</td>
+		<td>Création d'un <b>titre</b> (plus petit que title3)</td>
+		
+	</tr>
+	<tr>
+		
+		<td>Contenu : Un ou plusieurs éléments, le plus souvent une chaîne de caractères</td>
+	</tr>
+	
+	<tr>
+		<td>Exemple : title4("Mon petit titre")</td>
+	</tr>
+	
+	<tr><td></td></tr>
+
+<tr>
+		<td rowspan="3">title5</td>
+		<td>Création d'un <b>titre</b> (plus petit que title4)</td>
+		
+	</tr>
+	<tr>
+		
+		<td>Contenu : Un ou plusieurs éléments, le plus souvent une chaîne de caractères</td>
+	</tr>
+	
+	<tr>
+		<td>Exemple : title5("Mon plus petit titre")</td>
+	</tr>
+	
+	<tr><td></td></tr>
+
+<tr>
+		<td rowspan="3">textLine</td>
+		<td>Création d'une <b>ligne de texte</b> (déclenche un retour à la ligne)</td>
+		
+	</tr>
+	<tr>
+		
+		<td>Contenu : Un ou plusieurs éléments, le plus souvent une chaîne de caractères</td>
+	</tr>
+	
+	<tr>
+		<td>Exemple : textLine("Une ligne de texte")</td>
+	</tr>
+	
+	<tr><td></td></tr>
+
+<tr>
+		<td rowspan="3">textLineFragment</td>
+		<td>Création d'un <b>fragment de ligne de texte</b> (déclenche un retour à la ligne) mais qui apparaît après, lorsqu'on avance dans la présentation</td>
+		
+	</tr>
+	<tr>
+		
+		<td>Contenu : Un ou plusieurs éléments, le plus souvent une chaîne de caractères</td>
+	</tr>
+	
+	<tr>
+		<td>Exemple : textLineFragment("Ligne de texte qui apparaît après")</td>
+	</tr>
+	
+	<tr><td></td></tr>
+
+<tr>
+		<td rowspan="3">textFragment</td>
+		<td>Création d'un <b>fragment de texte</b> (sans retour à la ligne) mais qui apparaît après, lorsqu'on avance dans la présentation</td>
+		
+	</tr>
+	<tr>
+		
+		<td>Contenu : Un ou plusieurs éléments, le plus souvent une chaîne de caractères</td>
+	</tr>
+	
+	<tr>
+		<td>Exemple : textFragment("texte qui apparaît plus tard")</td>
+	</tr>
+	
+	<tr><td></td></tr>
+
+<tr>
+		<td rowspan="3">italic</td>
+		<td>Met le texte en <b>italique</b></td>
+		
+	</tr>
+	<tr>
+		
+		<td>Contenu : Chaîne de caractères</td>
+	</tr>
+	
+	<tr>
+		<td>Exemple : italic("Texte en italique")</td>
+	</tr>
+	
+	<tr><td></td></tr>
+
+<tr>
+		<td rowspan="3">bold</td>
+		<td>Met le texte en <b>gras</b></td>
+		
+	</tr>
+	<tr>
+		
+		<td>Contenu : Chaîne de caractères</td>
+	</tr>
+	
+	<tr>
+		<td>Exemple : bold("Texte en gras")</td>
+	</tr>
+	
+	<tr><td></td></tr>
+
+<tr>
+		<td rowspan="3">emptyLine</td>
+		<td>Pour <b>sauter une ligne</b></td>
+		
+	</tr>
+	<tr>
+		
+		<td>Contenu : Aucun</td>
+	</tr>
+	
+	<tr>
+		<td>Exemple : emptyLine</td>
+	</tr>
+	
+	<tr><td></td></tr>
+
+<tr>
+		<td rowspan="3">unorderedList</td>
+		<td>Création d'une <b>liste à puces</b></td>
+		
+	</tr>
+	<tr>
+		
+		<td>Contenu : Un ou plusieurs éléments, le plus souvent une suite d'éléments listItem</td>
+	</tr>
+	
+	<tr>
+		<td>Exemple : unorderedList(listItem("1er élément"), listItem("2ème élément"))</td>
+	</tr>
+	
+	<tr><td></td></tr>
+
+<tr>
+		<td rowspan="3">orderedList</td>
+		<td>Création d'une <b>liste numérotée</b></td>
+		
+	</tr>
+	<tr>
+		
+		<td>Contenu : Un ou plusieurs éléments, le plus souvent une suite d'éléments listItem</td>
+	</tr>
+	
+	<tr>
+		<td>Exemple : orderedList(listItem("1er élément"), listItem("2ème élément"))</td>
+	</tr>
+
+	<tr><td></td></tr>
+
+<tr>
+		<td rowspan="3">listItem</td>
+		<td>Création d'un <b>élément d'une liste</b></td>
+		
+	</tr>
+	<tr>
+		
+		<td>Contenu : Un ou plusieurs éléments, le plus souvent une chaîne de caractères</td>
+	</tr>
+	
+	<tr>
+		<td>Exemple : listItem("un élément de liste")</td>
+	</tr>
+	
+	<tr><td></td></tr>
+
+<tr>
+		<td rowspan="3">alink</td>
+		<td>Création d'un <b>lien</b></td>
+		
+	</tr>
+	<tr>
+		
+		<td>Contenu : Un ou plusieurs éléments, avec normalement un élément linkURL</td>
+	</tr>
+	
+	<tr>
+		<td>Exemple : alink(linkURL("https://www.google.fr/"), "Lien externe")</td>
+	</tr>
+	
+	<tr><td></td></tr>
+	
+<tr>
+		<td rowspan="3">tableRow</td>
+		<td>Création d'une <b>ligne de tableau</b>, doit être placé dans un élément table</td>
+		
+	</tr>
+	<tr>
+		
+		<td>Contenu : Un ou plusieurs éléments, contient normalement un ou des éléments tableBox</td>
+	</tr>
+	
+	<tr>
+		<td>Exemple : tableRow(tableBox("Un élement de ma ligne"), tableBox("Un second élément de ma ligne"))</td>
+
+	<tr><td></td></tr>
+
+
+<tr>
+		<td rowspan="3">tableHead</td>
+		<td>Création d'un <b>élément d'entête de tableau</b>, doit être placé dans un élément tableRow</td>
+		
+	</tr>
+	<tr>
+		
+		<td>Contenu : Un ou plusieurs éléments, le plus souvent une chaîne de caractères</td>
+	</tr>
+	
+	<tr>
+		<td>Exemple : tableHead("Entête de tableau")</td>
+	</tr>
+	
+	<tr><td></td></tr>
+	
+<tr>
+		<td rowspan="3">tableBox</td>
+		<td>Création d'un <b>élément de tableau</b>, doit être placé dans un élément tableRow</td>
+		
+	</tr>
+	<tr>
+		
+		<td>Contenu : Un ou plusieurs éléments, le plus souvent une chaîne de caractères</td>
+	</tr>
+	
+	<tr>
+		<td>Exemple : tableBox("Le contenu d'une case de tableau")</td>
+	</tr>
+
+
+	<tr><td></td></tr>
+
+<tr>
+		<td rowspan="3">linkURL</td>
+		<td>Création d'un <b>attribut de lien hypertexte</b>, principalement utilisé dans un élément alink</td>
+		
+	</tr>
+	<tr>
+		
+		<td>Contenu : Chaîne de caractères, il s'agit de l'URL vers lequel le lien pointe</td>
+	</tr>
+	
+	<tr>
+		<td>Exemple : linkURL("https://www.google.fr/")</td>
+	</tr>
+
+
+	<tr><td></td></tr>
+
+		<tr>
+		<td rowspan="3">sourceAttr</td>
+		<td>Création d'un <b>attribut source</b>, doit être placé dans un élément, par exemple, un élement img</td>
+		
+	</tr>
+	<tr>
+		
+		<td>Contenu : Chaîne de caractères, il s'agit du chemin vers la source ciblée</td>
+	</tr>
+	
+	<tr>
+		<td>Exemple : img(sourceAttr("https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png"), altAttr("Up arrow"))</td>
+	</tr>
+
+	<tr><td></td></tr>
+	
+	<tr>
+		<td rowspan="3">altAttr</td>
+		<td>Création d'un <b>attribut alt</b>, peut être placé uniquement dans un élément img</td>
+		
+	</tr>
+	<tr>
+		
+		<td>Contenu : Chaîne de caractères, il s'agit du texte à afficher pour un élément img si l'image ne peut pas être affichée</td>
+	</tr>
+	
+	<tr>
+		<td>Exemple : img(sourceAttr("https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png"), altAttr("Up arrow"))
+</td>
+	</tr>
+
+
+	<tr><td></td></tr>
+
+	<tr>
+		<td rowspan="3">codeQuote</td>
+		<td>Création d'un <b>bloc pour afficher du code</b></td>
+		
+	</tr>
+	<tr>
+		
+		<td>Contenu : Chaîne de caractères, il s'agit du code à afficher</td>
+	</tr>
+	
+	<tr>
+		<td>Exemple : codeQuote("function linkify( selector ) {\n\tif( supports3DTransforms ) {\n\t\tvar nodes = document.querySelectorAll( selector );\n\t}\n}")</td>
+	</tr>
+
+	<tr><td></td></tr>
+
 	<tr>
 		<td rowspan="3">generateQuestionQRCode</td>
 		<td>Génère et affiche un <b>QR code qui donne accès à un questionnaire</b></td>
@@ -249,13 +592,16 @@ Pour finir, voici un bon exemple squelette fonctionnel d'une présentation avec 
 	</tr>
 	<tr>
 		
-		<td><u>Contenu :</u> Chaîne de caractères correspondant au numéro/intitulé de la question sous la forme "Question1", "Question2"...</td>
+		<td>Contenu : Chaîne de caractères correspondant au numéro/intitulé de la question sous la forme "Question1", "Question2"...</td>
 	</tr>
 	
 	<tr>
-		<td><u>Exemple :</u> slide(generateQuestionQRCode("Question1"))</td>
+		<td>Exemple : slide(generateQuestionQRCode("Question1"))</td>
 	</tr>
-	
+
+
+	<tr><td></td></tr>	
+
 	<tr>
 		<td rowspan="3">displayGraph</td>
 		
@@ -263,12 +609,14 @@ Pour finir, voici un bon exemple squelette fonctionnel d'une présentation avec 
 	</tr>
 	<tr>
 	
-		<td><u>Contenu :</u> Chaîne de caractères correspondant au numéro/intitulé de la question sous la forme "Question1", "Question2"... et une chaîne de caractère correspondant au type de graphe souhaité, il s'agit des types proposés par Chart.js (ex : "bar", "line", "pie")</td>
+		<td>Contenu : Chaîne de caractères correspondant au numéro/intitulé de la question sous la forme "Question1", "Question2"... et une chaîne de caractère correspondant au type de graphe souhaité, il s'agit des types proposés par Chart.js (ex : "bar", "line", "pie")</td>
 	</tr>
 	
 	<tr>
-		<td><u>Exemple :</u> slide(generateQuestionQRCode("Question1"))</td>
+		<td>Exemple : slide(generateQuestionQRCode("Question1"))</td>
 	</tr>
+	
+	<tr><td></td></tr>
 </table>
 
 
