@@ -348,21 +348,22 @@ slide(
 	displayChart("Question1", "pie")
 )
 ```
-On a deux chaîne de caractères dans l'élément displayChart.
+On a deux chaînes de caractères dans l'élément displayChart.
 Le premier correspond à l'intitulé de la question dont on veut afficher les réponses.
 Le second correspond au type de graphe que l'on souhaite utiliser. 
-On peut avoir trois types de graphes :
-"bar", "line" et "pie".
+On peut avoir trois types de graphes : "pie", "bar" et "line".
+> **Note :** Pour le moment, seul le type "pie" fonctionne correctement.
+
 Voici un aperçu de chacun de ces graphes :
 
+Un graphe de type "pie" :
+![Image of pie chart](http://i.imgur.com/AtuITJ8.png)
+
 Un graphe de type "bar" : 
-![Image of bar chart](https://octodex.github.com/images/yaktocat.png)
+A venir...
 
 Un graphe de type "line" :
-![Image of line chart](https://octodex.github.com/images/yaktocat.png)
-
-Un graphe de type "pie" :
-![Image of pie chart](https://octodex.github.com/images/yaktocat.png)
+A venir...
 
 ----------
 
