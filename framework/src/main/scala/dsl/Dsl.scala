@@ -14,18 +14,20 @@ object Dsl {
   /**
     * Création d'une présentation, on utilise qu'une seule fois cette fonction.
     * @param titleText Le titre de la page internet
-    * @param theme Le thème de la présentation, il s'agit des thèmes proposés par Reveal.js
+    * @param description La description de la page internet
+    * @param author L'auteur de la présentation
+    * @param theme Le thème de la présentation, il s'agit des thèmes proposés par Reveal.js ( black,white,league,sky,beige,simple,serif,blood,night,moon,solarized
     * @param array Le contenu de la présentation, on retrouve toutes les slides et leurs contenus
     * @return
     */
-  def presentation(titleText: String, theme: String, array: scalatags.Text.Modifier*) =
+  def presentation(titleText: String, description: String, author: String, theme: String, array: scalatags.Text.Modifier*) =
     Seq(
       html(
         head(
           meta(charset := "utf-8"),
           title(titleText),
-          meta(name := "description", content := "A framework for easily creating beautiful presentations using HTML"),
-          meta(name := "author", content := "Author"),
+          meta(name := "description", content := description),
+          meta(name := "author", content := author),
           meta(name := "apple-mobile-web-app-capable", content := "yes"),
           meta(name := "apple-mobile-web-app-status-bar-style", content := "black-translucent"),
           meta(name := "viewport", content := "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"),
@@ -45,7 +47,7 @@ object Dsl {
         script(src := "assets/javascripts/reveal.js")
       ),
 
-      script(scala.io.Source.fromFile("examples/public/reveal_initialize.txt").mkString)
+      script(scala.io.Source.fromFile("framework/public/reveal_initialize.txt").mkString)
     )
 
   /**
@@ -229,35 +231,17 @@ object Dsl {
         content
       )
     )
-
-  /*def answersLoop(content: scalatags.Text.Modifier*) : scalatags.Text.Modifier = {
-    var i = 0;
-    for (i <- 1 to 3) {
-      div(
-        `class` := "radio",
-        label(
-          input(
-            `type` := "radio",
-            `name` := "reponse",
-            "réponse"+i
-          )
-        )
-      )
-    }
-  }*/
-
-  // il faut réussir à boucler sur le nombre de réponses possibles pour lui créer une radio à chaque itération (tentative avec la fonction answersLoop() plus haut)
-  // Sinon on se limite à des questions à 2 réponses à choix unique (sans toucher la fonction survey)
+  
   /**
     * Création d'une diapositive contenant un questionnaire, le plus souvant c'est une diapositive sur laquelle l'auditoire accède après avoir scanné le QR code
     * @param number Le numéro/intitulé de la question sous la forme "Question1", "Question2", "Question3"...
     * @param content La liste des réponses possibles
     * @return
     */
-  def survey(number: String, content: scalatags.Text.Modifier*) =
+  def survey(number: String, choices: Int, content: scalatags.Text.Modifier*) =
     Seq(
       form(
-        title2(
+        title3(
           input(
             `type` := "hidden",
             `name` := "question",
@@ -287,24 +271,24 @@ object Dsl {
             )
           )
         ),
-        button(`type` :="submit", `name` :="number", `value` :=number, `formmethod` :="post", `formaction` :="routes.Application.saveAnswer()", "Valider")
+        button(`type` :="submit", `name` :="number", `value` :=number, `formmethod` :="post", `formaction` :="SubmitAnswer", "Submit")
       )
     )
 
   /**
     * Génère et affiche un QR code qui donne accès à un questionnaire défini par la fonction survey(...)
-    * @param question Le numéro/intitulé de la question sous la forme "Question1", "Question2", "Question3"...
+    * @param questionLink Le lien de la question sous la forme "https://monserver.com/Question1" ...
     * @return
     */
-  def generateQuestionQRCode(question: String) =
+  def generateQuestionQRCode(questionLink: String) =
     img(
-      sourceAttr("https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=http://monserver.com/"+question)
+      sourceAttr("https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl="+questionLink)
     )
 
   /**
     * Affiche un graphe permettant d'afficher les réponses d'une question donnée
     * @param number Le numéro/intitulé de la question sous la forme "Question1", "Question2", "Question3"...
-    * @param chartType Le type de graphe souhaité, il s'agit ici des types proposés par le plugin Chart.js
+    * @param chartType Le type de graphe souhaité, il s'agit ici des types proposés par le plugin Chart.js ( pie, line, bar)
     * @return
     */
   def displayGraph(number: String, chartType: String) =
