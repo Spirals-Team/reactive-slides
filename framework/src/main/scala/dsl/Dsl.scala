@@ -240,49 +240,244 @@ object Dsl {
         content
       )
     )
-  
+
   /**
-    * Création d'une diapositive contenant un questionnaire, le plus souvent c'est une diapositive sur laquelle l'auditoire accède après avoir scanné un QR code à partir de generateQuestionQRCode
+    * Création d'une diapositive contenant un questionnaire de 2, le plus souvent c'est une diapositive sur laquelle l'auditoire accède après avoir scanné un QR code à partir de generateQuestionQRCode
     * @param number Le numéro/intitulé de la question sous la forme "Question1", "Question2", "Question3"...
     * @param content La liste des réponses possibles
     * @return
     */
   def survey(number: String, choices: Int, content: scalatags.Text.Modifier*) =
-    Seq(
-      form(
-        title3(
+  Seq(
+    form(
+      title3(
+        input(
+          `type` := "hidden",
+          `name` := "question",
+          `value` := content(0).toString().substring(11, content(0).toString().length()-1),
+          content(0)
+        )
+      ),
+      div(
+        `class` := "radio",
+        label(
           input(
-            `type` := "hidden",
-            `name` := "question",
-            `value` := content(0).toString().substring(11, content(0).toString().length()-1),
-            content(0)
+            `type` := "radio",
+            `name` := "reponse",
+            `value` := content(1).toString().substring(11, content(1).toString().length()-1),
+            content(1)
           )
-        ),
-        div(
-          `class` := "radio",
-          label(
-            input(
-              `type` := "radio",
-              `name` := "reponse",
-              `value` := content(1).toString().substring(11, content(1).toString().length()-1),
-              content(1)
-            )
+        )
+      ),
+      div(
+        `class` := "radio",
+        label(
+          input(
+            `type` := "radio",
+            `name` := "reponse",
+            `value` := content(2).toString().substring(11, content(2).toString().length()-1),
+            content(2)
           )
-        ),
-        div(
-          `class` := "radio",
-          label(
-            input(
-              `type` := "radio",
-              `name` := "reponse",
-              `value` := content(2).toString().substring(11, content(2).toString().length()-1),
-              content(2)
-            )
-          )
-        ),
-        button(`type` :="submit", `name` :="number", `value` :=number, `formmethod` :="post", `formaction` :="SubmitAnswer", "Submit")
-      )
+        )
+      ),
+      button(`type` :="submit", `name` :="number", `value` :=number, `formmethod` :="post", `formaction` :="SubmitAnswer", "Submit")
     )
+  )
+
+  /**
+    * Création d'une diapositive contenant un questionnaire de 3, le plus souvent c'est une diapositive sur laquelle l'auditoire accède après avoir scanné un QR code à partir de generateQuestionQRCode
+    * @param number Le numéro/intitulé de la question sous la forme "Question1", "Question2", "Question3"...
+    * @param content La liste des réponses possibles
+    * @return
+    */
+  def survey3(number: String, choices: Int, content: scalatags.Text.Modifier*) =
+  Seq(
+    form(
+      title3(
+        input(
+          `type` := "hidden",
+          `name` := "question",
+          `value` := content(0).toString().substring(11, content(0).toString().length()-1),
+          content(0)
+        )
+      ),
+      div(
+        `class` := "radio",
+        label(
+          input(
+            `type` := "radio",
+            `name` := "reponse",
+            `value` := content(1).toString().substring(11, content(1).toString().length()-1),
+            content(1)
+          )
+        )
+      ),
+      div(
+        `class` := "radio",
+        label(
+          input(
+            `type` := "radio",
+            `name` := "reponse",
+            `value` := content(2).toString().substring(11, content(2).toString().length()-1),
+            content(2)
+          )
+        )
+      ),
+      div(
+        `class` := "radio",
+        label(
+          input(
+            `type` := "radio",
+            `name` := "reponse",
+            `value` := content(3).toString().substring(11, content(3).toString().length()-1),
+            content(3)
+          )
+        )
+      ),
+      button(`type` :="submit", `name` :="number", `value` :=number, `formmethod` :="post", `formaction` :="SubmitAnswer", "Submit")
+    )
+  )
+
+  /**
+    * Création d'une diapositive contenant un questionnaire de 4, le plus souvent c'est une diapositive sur laquelle l'auditoire accède après avoir scanné un QR code à partir de generateQuestionQRCode
+    * @param number Le numéro/intitulé de la question sous la forme "Question1", "Question2", "Question3"...
+    * @param content La liste des réponses possibles
+    * @return
+    */
+  def survey4(number: String, choices: Int, content: scalatags.Text.Modifier*) =
+  Seq(
+    form(
+      title3(
+        input(
+          `type` := "hidden",
+          `name` := "question",
+          `value` := content(0).toString().substring(11, content(0).toString().length()-1),
+          content(0)
+        )
+      ),
+      div(
+        `class` := "radio",
+        label(
+          input(
+            `type` := "radio",
+            `name` := "reponse",
+            `value` := content(1).toString().substring(11, content(1).toString().length()-1),
+            content(1)
+          )
+        )
+      ),
+      div(
+        `class` := "radio",
+        label(
+          input(
+            `type` := "radio",
+            `name` := "reponse",
+            `value` := content(2).toString().substring(11, content(2).toString().length()-1),
+            content(2)
+          )
+        )
+      ),
+      div(
+        `class` := "radio",
+        label(
+          input(
+            `type` := "radio",
+            `name` := "reponse",
+            `value` := content(3).toString().substring(11, content(3).toString().length()-1),
+            content(3)
+          )
+        )
+      ),
+      div(
+        `class` := "radio",
+        label(
+          input(
+            `type` := "radio",
+            `name` := "reponse",
+            `value` := content(4).toString().substring(11, content(4).toString().length()-1),
+            content(4)
+          )
+        )
+      ),
+      button(`type` :="submit", `name` :="number", `value` :=number, `formmethod` :="post", `formaction` :="SubmitAnswer", "Submit")
+    )
+  )
+
+  /**
+    * Création d'une diapositive contenant un questionnaire de 5, le plus souvent c'est une diapositive sur laquelle l'auditoire accède après avoir scanné un QR code à partir de generateQuestionQRCode
+    * @param number Le numéro/intitulé de la question sous la forme "Question1", "Question2", "Question3"...
+    * @param content La liste des réponses possibles
+    * @return
+    */
+  def survey5(number: String, choices: Int, content: scalatags.Text.Modifier*) =
+  Seq(
+    form(
+      title3(
+        input(
+          `type` := "hidden",
+          `name` := "question",
+          `value` := content(0).toString().substring(11, content(0).toString().length()-1),
+          content(0)
+        )
+      ),
+      div(
+        `class` := "radio",
+        label(
+          input(
+            `type` := "radio",
+            `name` := "reponse",
+            `value` := content(1).toString().substring(11, content(1).toString().length()-1),
+            content(1)
+          )
+        )
+      ),
+      div(
+        `class` := "radio",
+        label(
+          input(
+            `type` := "radio",
+            `name` := "reponse",
+            `value` := content(2).toString().substring(11, content(2).toString().length()-1),
+            content(2)
+          )
+        )
+      ),
+      div(
+        `class` := "radio",
+        label(
+          input(
+            `type` := "radio",
+            `name` := "reponse",
+            `value` := content(3).toString().substring(11, content(3).toString().length()-1),
+            content(3)
+          )
+        )
+      ),
+      div(
+        `class` := "radio",
+        label(
+          input(
+            `type` := "radio",
+            `name` := "reponse",
+            `value` := content(4).toString().substring(11, content(4).toString().length()-1),
+            content(4)
+          )
+        )
+      ),
+      div(
+        `class` := "radio",
+        label(
+          input(
+            `type` := "radio",
+            `name` := "reponse",
+            `value` := content(5).toString().substring(11, content(5).toString().length()-1),
+            content(5)
+          )
+        )
+      ),
+      button(`type` :="submit", `name` :="number", `value` :=number, `formmethod` :="post", `formaction` :="SubmitAnswer", "Submit")
+    )
+  )
 
   /**
     * Génère et affiche un QR code qui donne accès à un questionnaire défini par la fonction survey(...)
