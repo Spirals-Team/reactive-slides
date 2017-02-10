@@ -18,19 +18,21 @@ class PresentationController @Inject()(db: Database, questionFormService: Questi
     Ok(MainView(view).toString).withHeaders(CONTENT_TYPE -> ContentTypes.HTML)
   }
 
-  def presentationTitle = "reveal.js - The HTML Presentation Framework"
+  def presentationTitle = "reactive-slides - The Interactive Presentations Framework"
+  def description = "A web framework for building interactive presentations"
+  def author = "Rahal Badr & Nicolas Vasseur"
   def theme = "black"
 
   def index = {
-    ok(PresentationView(presentationTitle, theme))
+    ok(PresentationView(presentationTitle, description, author, theme))
   }
 
   def showQuestion1 = {
-    ok(Question1View(presentationTitle, theme))
+    ok(Question1View(presentationTitle, description, author, theme))
   }
 
   def showQuestion2 = {
-    ok(Question2View(presentationTitle, theme))
+    ok(Question2View(presentationTitle, description, author, theme))
   }
 
   case class QuestionData(question: String, reponse: String, number: String)
@@ -44,6 +46,6 @@ class PresentationController @Inject()(db: Database, questionFormService: Questi
 
   def saveAnswer = Action { implicit request =>
     val questionData = questionForm.bindFromRequest.get
-    Ok(MainView(AnswerView(presentationTitle, theme, questionData.question, questionData.reponse, questionData.number, db)).toString).withHeaders(CONTENT_TYPE -> ContentTypes.HTML)
+    Ok(MainView(AnswerView(presentationTitle, description, author, theme, questionData.question, questionData.reponse, questionData.number, db)).toString).withHeaders(CONTENT_TYPE -> ContentTypes.HTML)
   }
 }
