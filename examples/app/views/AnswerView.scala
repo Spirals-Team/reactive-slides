@@ -28,7 +28,7 @@ object AnswerView {
       }
       rs.beforeFirst()
 
-      var secondLine = "My first dataset"
+      var secondLine = "Audience Response"
       while (rs.next()) {
         secondLine += ", " + rs.getString("nb")
       }
