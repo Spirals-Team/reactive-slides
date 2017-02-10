@@ -263,7 +263,7 @@ Pour configurer une nouvelle question, il faudra procéder à trois étapes.
 
 **1ère étape : Création de la vue de la question**
 
-Tout d'abord, il faut créer la vue de la question. C'est à dire, créer un fichier dans /examples/app/views/ dont le nom sera sous la forme "QuestionXView.scala", X étant le numéro de la question.
+Tout d'abord, il faut créer la vue de la question. C'est à dire, créer un fichier dans **/examples/app/views/** dont le nom sera sous la forme "QuestionXView.scala", X étant le numéro de la question.
 
 Le contenu de ce fichier doit ressembler à ça : 
 ```
@@ -297,9 +297,9 @@ Voilà pour cette première étape de la configuration d'une nouvelle question.
 
 **2ème étape : Importation et définition dans le contrôleur**
 
-A cette étape, on va modifier le contrôleur. C'est le fichier /examples/app/controllers/PresentationController.scala 
+A cette étape, on va modifier le contrôleur. C'est le fichier **/examples/app/controllers/PresentationController.scala** 
 *En premier lieu :*
-On importe la vue, pour se faire, on modifie la ligne commençant par "import views.{" qui doit se trouver au début du fichier du contrôleur. 
+On importe la vue, pour se faire, on modifie la ligne commençant par **import views.{** qui doit se trouver au début du fichier du contrôleur. 
 On va ajouter le nom du fichier de la vue créé à l'étape précédente. Par exemple, si la ligne ressemble à :
 ```
 import views.{AnswerView, PresentationView, MainView}
@@ -321,7 +321,7 @@ Encore une fois, dans cette exemple, c'est dans le cas où l'on ajoute Question1
 
 **3ème étape : Mise en place du routing**
 
-On met en place le routing dans le fichier /examples/conf/routes
+On met en place le routing dans le fichier **/examples/conf/routes**
 On associe la chemin de l'URL souhaitée à la fonction définie dans le contrôleur. C'est à dire, on ajouter la ligne suivante au fichier de routing :
 ```
 GET	/Question1	@controllers.PresentationController.showQuestion1
