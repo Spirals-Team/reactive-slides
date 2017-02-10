@@ -706,7 +706,7 @@ object Question1View {
   def apply(title: String, theme: String) = {
     presentation(title, theme,
       slide(
-        survey("Question1", "Are you working ?","Yes", "No")
+        surveyOfN("Question1", "Are you working ?","Yes", "No")
       )
     )
   }
@@ -715,14 +715,14 @@ object Question1View {
 **Important :**
 Il faut s'assurer à la ligne 3 que le nom de l'objet correspond bien au nom du fichier (sans l'extension), dans notre exemple, le fichier s’appellerait donc "Question1View.scala".
 
-Ensuite, la seule chose à modifier est le contenu de la méthode survey(...).  
+Ensuite, la seule chose à modifier est le contenu de la méthode surveyOfN(...). N correspond au nombre de choix disponibles pour la question. 
 La première chaîne de caractères correspond à l'intitulé de la question. L'idéal est de le faire correspondre au nom du fichier ou de l'objet sans le "View" à la fin, c'est pourquoi dans notre exmple, on a "Question1". 
 
-Le reste correspond à la question et aux réponses, l'ordre est important, la seconde chaîne de caractères de la méthode survey(...) correspond à l'intitulé de la question, toutes les autres chaînes qui suivent sont les différentes réponses possibles pour cette question.
+Le reste correspond à la question et aux réponses, l'ordre est important, la seconde chaîne de caractères de la méthode surveyOfN(...) correspond à l'intitulé de la question, toutes les autres chaînes qui suivent sont les différentes réponses possibles pour cette question.
 
 > **Note :** Pour le moment, les questions peuvent avoir au plus 5 choix de réponses. C'est une contrainte qui reste à améliorer.
 
-Sachez ainsi que la méthode survey(...) permet la création d'une diapositive contenant un questionnaire, l'auditoire accédera à celle-ci sur son périphérique après avoir scanné le QR code correspondant.
+Sachez ainsi que la méthode surveyOfN(...) permet la création d'une diapositive contenant un questionnaire, l'auditoire accédera à celle-ci sur son périphérique après avoir scanné le QR code correspondant.
 
 Voilà pour cette première étape de la configuration d'une nouvelle question.
 
