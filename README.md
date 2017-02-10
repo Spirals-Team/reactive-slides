@@ -56,8 +56,7 @@ sbt run
 
 ## Create your own Interactive Presentation
 
-Before creating your own Interactive Presentation, take your time to read the   
-User Manual available in the root of the project. It will guide you step by step. ( Available only in French)
+Before creating your own Interactive Presentation, take your time to read the User Manual available in the root of the project. It will guide you step by step. ( Available only in French)
 
 #### Useful informations :
 - The HTML presentation framework used is [reveal.js](http://lab.hakim.se/reveal-js/#/)
