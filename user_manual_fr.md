@@ -12,13 +12,14 @@ Installation et configuration
 
 #### 1. Play avec activator
 
-Pour utiliser ce framework, il vous faut avant tout installer le framework **Play avec activator**.
-Suivez ce lien pour se faire : https://www.playframework.com/download#activator
+Pour utiliser ce framework, il vous faut avant tout installer le framework **Play avec activator**.  
+Suivez ce lien pour se faire : https://www.playframework.com/download#activator  
 Si l'installation s'est bien passée, vous devriez alors pouvoir faire la commande ```activator``` dans le terminal.
 
 #### 2. Base de données MySQL
 
-Il faut, ensuite, mettre en place une **base de données MySQL**. Celle-ci doit être créé selon les paramètres spécifiés dans le fichier **/examples/conf/application.conf** en particulier les lignes suivantes (~ lignes 45-50) :
+Il faut, ensuite, mettre en place une **base de données MySQL**.  
+Celle-ci doit être créé selon les paramètres spécifiés dans le fichier **/examples/conf/application.conf** en particulier les lignes suivantes (~ lignes 45-50) :
 
 ```
 # Default database configuration using MySQL database engine
@@ -31,12 +32,12 @@ db.default.password="database_password"
 
 Il faut remplacer database_name, database_username et database_password par leurs valeurs correspondantes.
 
-Une fois la base de données créées, pour finir, il est nécessaire d'importer le modèle de données qui se trouve dans le fichier **database.sql** à la racine du projet. 
+Une fois la base de données créées, pour finir, il est nécessaire d'importer le modèle de données qui se trouve dans le fichier **database.sql** à la racine du projet.  
 Plus d'informations pour faire cela : https://dev.mysql.com/doc/refman/5.7/en/mysql-batch-commands.html
 
 #### 3. Lancer le serveur
 
-Pour lancer le serveur en local, il vous suffira alors de lancer la commande ```activator start``` à la racine du framework. 
+Pour lancer le serveur en local, il vous suffira alors de lancer la commande ```activator start``` à la racine du framework.  
 Par défaut, il vous est alors possible de voir la présentation à l'adresse ```http://localhost:9000``` une fois le serveur bien lancé.
 
 Plus tard, il sera nécessaire de mettre en place votre présentation sur un serveur en ligne pour pouvoir utiliser l'aspect intéractif de l'application.
@@ -70,7 +71,7 @@ def theme = "black"
 ```
 "presentationTitle" précise le titre de la présentation, c'est à dire le texte qui sera écrit sur l'onglet de la page web de la présentation et sur la fenêtre du navigateur si l'onglet est selectionné.
 
-"theme" précise le thème de la présentation, cela permet de changer le visuel des diapositives. Il s'agit ici des thèmes proposés par Reveal.js, le framework sur lequel on s'appuie pour générer la présentation. 
+"theme" précise le thème de la présentation, cela permet de changer le visuel des diapositives. Il s'agit ici des thèmes proposés par Reveal.js, le framework sur lequel on s'appuie pour générer la présentation.  
 Vous trouverez la liste des thèmes disponibles ici : https://github.com/hakimel/reveal.js#theming.
 
 #### <i class="icon-pencil"></i> Ecrire sa présentation
@@ -224,10 +225,10 @@ Pour finir, voici un bon exemple squelette fonctionnel d'une présentation avec 
 
 
 
-En plus de tous ces élements, il est possible d'utiliser n'importe quel autre élement HTML. Vous trouverez une liste très bien documentée de ces élements sur ces pages : 
+En plus de tous ces élements, il est possible d'utiliser n'importe quel autre élement HTML. Vous trouverez une liste très bien documentée de ces élements sur ces pages :   
 - http://www.w3schools.com/tags/ 
 - https://developer.mozilla.org/fr/docs/Web/HTML/Element
-Bien évidemment, on peut les écrire en utilisant la syntaxe de notre langage dédié.
+Bien évidemment, on peut les écrire en utilisant la syntaxe de notre langage dédié.  
 Par exemple, si on veut écrire un élément <button>, il suffira d'écrire :
 ```
 button("Texte du bouton")
@@ -251,10 +252,10 @@ button(attr("class"):="myClass", "Texte du bouton")
 Poser une question et utiliser les réponses
 -------------
 
-Nous allons maintenant voir comment mettre en place le système de questions-réponses entre le présentateur et l'auditoire. Cela va se faire en trois temps :
-- Configuration de la question
-- Ajout de la question à la présentation
-- Visualisation des réponses
+Nous allons maintenant voir comment mettre en place le système de questions-réponses entre le présentateur et l'auditoire. Cela va se faire en trois temps :  
+- Configuration de la question  
+- Ajout de la question à la présentation  
+- Visualisation des réponses  
 La configuration de la question est l'étape la plus fastidieuse. Une fois faite, le reste est très simple.
 
 #### <i class="icon-cog"></i> Configurer une nouvelle question
@@ -263,7 +264,8 @@ Pour configurer une nouvelle question, il faudra procéder à trois étapes.
 
 **1ère étape : Création de la vue de la question**
 
-Tout d'abord, il faut créer la vue de la question. C'est à dire, créer un fichier dans /examples/app/views/ dont le nom sera sous la forme "QuestionXView.scala", X étant le numéro de la question.
+Tout d'abord, il faut créer la vue de la question.  
+C'est à dire, créer un fichier dans **/examples/app/views/** dont le nom sera sous la forme "QuestionXView.scala", X étant le numéro de la question.
 
 Le contenu de ce fichier doit ressembler à ça : 
 ```
@@ -286,7 +288,7 @@ object Question1View {
 **Important :**
 Il faut s'assurer à la ligne 3 que le nom de l'objet correspond bien au nom du fichier (sans l'extension), dans notre exemple, le fichier s’appellerait donc "Question1View.scala".
 
-Ensuite, la seule chose à modifier est le contenu de la méthode survey(...). 
+Ensuite, la seule chose à modifier est le contenu de la méthode survey(...).  
 La première chaîne de caractères correspond à l'intitulé de la question. L'idéal est de le faire correspondre au nom du fichier ou de l'objet sans le "View" à la fin, c'est pourquoi dans notre exmple, on a "Question1". 
 
 Le reste correspond à la question et aux réponses, l'ordre est important, la seconde chaîne de caractères de la méthode survey(...) correspond à l'intitulé de la question, toutes les autres chaînes qui suivent sont les différentes réponses possibles pour cette question.
@@ -297,9 +299,10 @@ Voilà pour cette première étape de la configuration d'une nouvelle question.
 
 **2ème étape : Importation et définition dans le contrôleur**
 
-A cette étape, on va modifier le contrôleur. C'est le fichier /examples/app/controllers/PresentationController.scala 
-*En premier lieu :*
-On importe la vue, pour se faire, on modifie la ligne commençant par "import views.{" qui doit se trouver au début du fichier du contrôleur. 
+A cette étape, on va modifier le contrôleur. C'est le fichier **/examples/app/controllers/PresentationController.scala**  
+
+*En premier lieu :*  
+On importe la vue, pour se faire, on modifie la ligne commençant par **import views.{** qui doit se trouver au début du fichier du contrôleur. 
 On va ajouter le nom du fichier de la vue créé à l'étape précédente. Par exemple, si la ligne ressemble à :
 ```
 import views.{AnswerView, PresentationView, MainView}
@@ -310,7 +313,7 @@ import views.{AnswerView, PresentationView, MainView, Question1View}
 ```
 Dans la cas où on ajoute Question1View.
 
-*En second lieu :*
+*En second lieu :*  
 On définit cette vue dans le contrôleur, il s'agit d'ajouter dans "class PresentationController ... {" :
 ```
 def showQuestion1 = {
@@ -321,7 +324,7 @@ Encore une fois, dans cette exemple, c'est dans le cas où l'on ajoute Question1
 
 **3ème étape : Mise en place du routing**
 
-On met en place le routing dans le fichier /examples/conf/routes
+On met en place le routing dans le fichier **/examples/conf/routes**  
 On associe la chemin de l'URL souhaitée à la fonction définie dans le contrôleur. C'est à dire, on ajouter la ligne suivante au fichier de routing :
 ```
 GET	/Question1	@controllers.PresentationController.showQuestion1
@@ -332,7 +335,8 @@ On a terminé la configuration d'une question, il ne reste plus qu'à ajouter la
 
 #### <i class="icon-comment-empty"></i> Ajouter sa question à la présentation
 
-Pour ajouter sa question à la présentation, il faut créer une diapositive avec un élément generateQuestionQRcode. On aura alors une diapositive avec un QR code qui peut être scanné par l'auditoire. Voici un exemple de code pour cela :
+Pour ajouter sa question à la présentation, il faut créer une diapositive avec un élément generateQuestionQRcode.  
+On aura alors une diapositive avec un QR code qui peut être scanné par l'auditoire. Voici un exemple de code pour cela :
 ```
 slide(
 	generateQuestionQRcode("Question1")
@@ -342,27 +346,29 @@ La chaîne de caractères dans l'élément generateQuestionQRcode correspond à 
 
 #### <i class="icon-reply"></i> Visualiser les réponses
 
-Si vous souhaitez montrer les réponses obtenues à l'auditoire, cela est possible à travers plusieurs types de graphes. Pour cela, on créé une diapositive avec un élément displayChart. Un exemple de code :
+Si vous souhaitez montrer les réponses obtenues à l'auditoire, cela est possible à travers plusieurs types de graphes.  
+Pour cela, on créé une diapositive avec un élément displayChart. Un exemple de code :
 ```
 slide(
 	displayChart("Question1", "pie")
 )
 ```
-On a deux chaîne de caractères dans l'élément displayChart.
-Le premier correspond à l'intitulé de la question dont on veut afficher les réponses.
-Le second correspond au type de graphe que l'on souhaite utiliser. 
-On peut avoir trois types de graphes :
-"bar", "line" et "pie".
+On a deux chaînes de caractères dans l'élément displayChart.  
+Le premier correspond à l'intitulé de la question dont on veut afficher les réponses.  
+Le second correspond au type de graphe que l'on souhaite utiliser.  
+On peut avoir trois types de graphes : "pie", "bar" et "line".  
+> **Note :** Pour le moment, seul le type "pie" fonctionne correctement.
+
 Voici un aperçu de chacun de ces graphes :
 
+Un graphe de type "pie" :
+![Image of pie chart](http://i.imgur.com/AtuITJ8.png)
+
 Un graphe de type "bar" : 
-![Image of bar chart](https://octodex.github.com/images/yaktocat.png)
+A venir...
 
 Un graphe de type "line" :
-![Image of line chart](https://octodex.github.com/images/yaktocat.png)
-
-Un graphe de type "pie" :
-![Image of pie chart](https://octodex.github.com/images/yaktocat.png)
+A venir...
 
 ----------
 
