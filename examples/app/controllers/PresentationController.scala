@@ -46,6 +46,7 @@ class PresentationController @Inject()(db: Database, questionFormService: Questi
 
   def saveAnswer = Action { implicit request =>
     val questionData = questionForm.bindFromRequest.get
-    Ok(MainView(AnswerView(presentationTitle, description, author, theme, questionData.question, questionData.reponse, questionData.number, db)).toString).withHeaders(CONTENT_TYPE -> ContentTypes.HTML)
+    questionFormService.extractAnswer(questionData.question, questionData.reponse, questionData.number)
+    Ok(MainView(AnswerView(presentationTitle, description, author, theme)).toString).withHeaders(CONTENT_TYPE -> ContentTypes.HTML)
   }
 }
