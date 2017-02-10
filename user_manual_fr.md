@@ -5,7 +5,24 @@ L'objectif de ce manuel est d'expliquer comment mettre en place une présentatio
 
 ----------
 
-[TOC]
+Sommaire
+-------------
+
+   * [Manuel utilisateur](#manuel-utilisateur)
+      * [Installation et configuration](#installation-et-configuration)
+            * [1. Play avec activator](#1-play-avec-activator)
+            * [2. Base de données MySQL](#2-base-de-données-mysql)
+            * [3. Lancer le serveur](#3-lancer-le-serveur)
+      * [Création de la présentation](#création-de-la-présentation)
+            * [<i></i> Fichier de la présentation](#-fichier-de-la-présentation)
+            * [<i></i> Paramètres](#-paramètres)
+            * [<i></i> Ecrire sa présentation](#-ecrire-sa-présentation)
+            * [<i></i> Exemple](#-exemple)
+            * [<i></i> Liste des éléments de notre langage dédié](#-liste-des-éléments-de-notre-langage-dédié)
+      * [Poser une question et utiliser les réponses](#poser-une-question-et-utiliser-les-réponses)
+            * [<i></i> Configurer une nouvelle question](#-configurer-une-nouvelle-question)
+            * [<i></i> Ajouter sa question à la présentation](#-ajouter-sa-question-à-la-présentation)
+            * [<i></i> Visualiser les réponses](#-visualiser-les-réponses)
 
 Installation et configuration
 -------------
@@ -221,7 +238,38 @@ Pour finir, voici un bon exemple squelette fonctionnel d'une présentation avec 
 | altAttr           | Chaîne de caractères, il s'agit du texte à afficher pour un élément img si l'image ne peut pas être affichée | Création d'un **attribut alt**, peut être placé uniquement dans un élément img | img(sourceAttr("https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png"), altAttr("Up arrow"))
 | codeQuote           | Chaîne de caractères, il s'agit du code à afficher | Création d'un **bloc pour afficher du code** | codeQuote("function linkify( selector ) {\n\tif( supports3DTransforms ) {\n\t\tvar nodes = document.querySelectorAll( selector );\n\t}\n}")
 | generateQuestionQRCode           | Chaîne de caractères correspondant au numéro/intitulé de la question sous la forme "Question1", "Question2"... | Génère et affiche un **QR code qui donne accès à un questionnaire** | slide(generateQuestionQRCode("Question1"))
-| displayGraph           | Chaîne de caractères correspondant au numéro/intitulé de la question sous la forme "Question1", "Question2"... et une chaîne de caractère correspondant au type de graphe souhaité, il s'agit des types proposés par Chart.js (ex : "bar", "line", "pie") | Affiche un **graphe affichant les réponses d'une question donnée** | slide(generateQuestionQRCode("Question1"))
+
+<table>
+
+	
+	<tr>
+		<td rowspan="3">generateQuestionQRCode</td>
+		<td>Génère et affiche un <b>QR code qui donne accès à un questionnaire</b></td>
+		
+	</tr>
+	<tr>
+		
+		<td><u>Contenu :</u> Chaîne de caractères correspondant au numéro/intitulé de la question sous la forme "Question1", "Question2"...</td>
+	</tr>
+	
+	<tr>
+		<td><u>Exemple :</u> slide(generateQuestionQRCode("Question1"))</td>
+	</tr>
+	
+	<tr>
+		<td rowspan="3">displayGraph</td>
+		
+		<td> Affiche un <b>graphe affichant les réponses d'une question donnée</b></td>
+	</tr>
+	<tr>
+	
+		<td><u>Contenu :</u> Chaîne de caractères correspondant au numéro/intitulé de la question sous la forme "Question1", "Question2"... et une chaîne de caractère correspondant au type de graphe souhaité, il s'agit des types proposés par Chart.js (ex : "bar", "line", "pie")</td>
+	</tr>
+	
+	<tr>
+		<td><u>Exemple :</u> slide(generateQuestionQRCode("Question1"))</td>
+	</tr>
+</table>
 
 
 
@@ -333,14 +381,16 @@ On associe la chemin de l'URL souhaitée à la fonction définie dans le contrô
 ```
 GET	/Question1	@controllers.PresentationController.showQuestion1
 ```
-Encore une fois, on modifie selon le numéro de la question. Pour les autres questions, on aura /Question2 et showQuestion2, /Question3 et showQuestion3, etc.
+Une nouvelle fois, on modifie selon le numéro de la question. Pour les autres questions, on aura /Question2 et showQuestion2, /Question3 et showQuestion3, etc.
 
-On a terminé la configuration d'une question, il ne reste plus qu'à ajouter la diapositive avec le QR code et celle pour afficher le graphique des réponses si l'on souhaite montrer les résultats.
+
 
 **4ème étape : Création du fichier pour les réponses**
 
 Il faut tout simplement créer un fichier texte vide dans **/examples/public/charts/** nommé selon l'intitulé de la question. Par exemple **Question1.txt**  
 C'est dans ce fichier que seront enregistrées les réponses obtenues à l'issue du questionnaire afin de les afficher à l'aide d'un graphe.
+
+On a terminé la configuration d'une question, il ne reste plus qu'à ajouter la diapositive avec le QR code et celle pour afficher le graphique des réponses si l'on souhaite montrer les résultats.
 
 #### <i class="icon-comment-empty"></i> Ajouter sa question à la présentation
 
