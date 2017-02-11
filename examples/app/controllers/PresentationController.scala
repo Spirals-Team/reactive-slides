@@ -1,12 +1,16 @@
 package controllers
 
 import javax.inject.Inject
+
 import models._
 import play.api.data._
 import play.api.data.Forms._
 import play.api.http._
 import play.api.mvc._
+import views.examplePresentation._
+import views.revealJsDemoPresentation._
 import views._
+import views.interactivePresentation._
 
 import scalatags._
 
@@ -34,10 +38,31 @@ class PresentationController @Inject()(questionFormService: QuestionFormService)
   }
 
   /**
-    * This result directly redirect to the presentation home.
+    * This result directly redirect to the example presentation home.
     */
   def index = {
-    ok(PresentationView(presentationTitle, description, author, theme))
+    ok(HomePageView(presentationTitle, description, author, theme))
+  }
+
+  /**
+    * Display the revel.js Demo Presentation
+    */
+  def displayRevealJsDemo = {
+    ok(RevealJsDemoPresentationView(presentationTitle, description, author, theme))
+  }
+
+  /**
+    * Display the interactive Demo Presentation
+    */
+  def displayInteractiveDemo = {
+    ok(InteractivePresentationView(presentationTitle, description, author, theme))
+  }
+
+  /**
+    * Display the example Demo Presentation
+    */
+  def displayExampleDemo = {
+    ok(ExamplePresentationView(presentationTitle, description, author, theme))
   }
 
   /**
