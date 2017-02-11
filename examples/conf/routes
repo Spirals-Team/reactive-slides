@@ -2,6 +2,7 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+
 # Home page
 GET     /                                           @controllers.PresentationController.index
 
@@ -10,9 +11,9 @@ GET     /RevealJsDemo                               @controllers.PresentationCon
 
 # The Interactive Presentation routes
 GET     /InteractiveDemo                            @controllers.PresentationController.displayInteractiveDemo
-GET     /InteractiveDemo/Question1                  @controllers.PresentationController.showQuestion1
-GET     /InteractiveDemo/Question2                  @controllers.PresentationController.showQuestion2
-POST    /InteractiveDemo/SubmitAnswer               @controllers.PresentationController.saveAnswer
+GET     /Question1                                  @controllers.PresentationController.showQuestion1
+GET     /Question2                                  @controllers.PresentationController.showQuestion2
+POST    /SubmitAnswer                               @controllers.PresentationController.saveAnswer
 
 # The example Presentation routes
 GET     /ExampleDemo                                @controllers.PresentationController.displayExampleDemo
