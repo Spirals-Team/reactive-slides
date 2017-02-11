@@ -3,11 +3,19 @@
 # ~~~~
 
 # Home page
-GET     /                           @controllers.PresentationController.index
-GET     /Question1                  @controllers.PresentationController.showQuestion1
-GET     /Question2                  @controllers.PresentationController.showQuestion2
+GET     /                                           @controllers.PresentationController.index
 
-POST    /SubmitAnswer               @controllers.PresentationController.saveAnswer
+# The Reveal.js demo Presentation routes
+GET     /RevealJsDemo                               @controllers.PresentationController.displayRevealJsDemo
+
+# The Interactive Presentation routes
+GET     /InteractiveDemo                            @controllers.PresentationController.displayInteractiveDemo
+GET     /InteractiveDemo/Question1                  @controllers.PresentationController.showQuestion1
+GET     /InteractiveDemo/Question2                  @controllers.PresentationController.showQuestion2
+POST    /InteractiveDemo/SubmitAnswer               @controllers.PresentationController.saveAnswer
+
+# The example Presentation routes
+GET     /ExampleDemo                                @controllers.PresentationController.displayExampleDemo
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

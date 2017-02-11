@@ -1,8 +1,9 @@
-package views
+package views.interactivePresentation
 
 object Question2View {
 
   import dsl.Dsl._
+
   import scalatags.Text.all._
 
   def apply(title: String, description: String, author: String, theme: String) = {
