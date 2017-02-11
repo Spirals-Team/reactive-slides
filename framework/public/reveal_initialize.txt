@@ -1,0 +1,41 @@
+Reveal.initialize({
+    controls:true,
+    progress:true,
+    history:true,
+    center:true,
+    transition:'slide',
+
+    chart: {
+        defaults: {
+            global: {
+                title: { fontColor: '#FFF' },
+            },
+            legend: {
+                labels: { fontColor: '#FFF' },
+            },
+            scale: {
+                scaleLabel: { fontColor: '#FFF' },
+                gridLines: { color: '#FFF', zeroLineColor: '#FFF' },
+                ticks: { fontColor: '#FFF' },
+            }
+        },
+        line: { borderColor: [ 'rgba(20,220,220,.8)' , 'rgba(220,120,120,.8)', 'rgba(20,120,220,.8)' ], 'borderDash': [ [5,10], [0,0] ]},
+        bar: { backgroundColor: [ 'rgba(20,220,220,.8)' , 'rgba(220,120,120,.8)', 'rgba(20,120,220,.8)' ]},
+        pie: { backgroundColor: [ ['#f1c40f' , '#d35400', '#f39c12', '#e67e22', '#27ae60', '#2ecc71', '#e74c3c', '#3498db', '#2c3e50', '#16a085'] ]},
+        radar: { borderColor: [ 'rgba(20,220,220,.8)' , 'rgba(220,120,120,.8)', 'rgba(20,120,220,.8)' ]},
+    },
+
+    dependencies:[
+
+        { src : 'assets/javascripts/lib/classList.js', condition: function() { return !document.body.classList; } },
+        { src : 'assets/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad();} },
+        { src : 'assets/plugin/zoom-js/zoom.js',async:true },
+        { src : 'assets/plugin/notes/notes.js', async:true },
+        { src : 'assets/plugin/markdown/marked.js', condition : function(){ return !!document.querySelector('[data-markdown]');} },
+        { src : 'assets/plugin/markdown/markdown.js', condition: function(){ return !!document.querySelector('[data-markdown]');} },
+
+        { src : 'assets/plugin/chart/Chart.min.js' },
+        { src : 'assets/plugin/chart/csv2chart.js' }
+    ]
+
+});

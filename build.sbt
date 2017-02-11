@@ -1,26 +1,41 @@
-import sbt.Project.projectToRef
+scalaVersion in ThisBuild := "2.11.8"
 
-lazy val scalaV = "2.11.8"
+lazy val appVersion = "1.0"
 
-lazy val examples = (project in file("examples")).settings(
-  scalaVersion := scalaV,
-  libraryDependencies ++= Seq(
-    "com.lihaoyi" %% "scalatags" % "0.6.1"
+def project(id: String, versionV: String) = Project(id = id, base = file(id))
+  .settings(
+    scalacOptions ++= Seq(
+      "-deprecation",
+      "-target:jvm-1.8",
+      "-encoding", "UTF-8",
+      "-feature",
+      "-language:existentials",
+      "-language:higherKinds",
+      "-language:implicitConversions",
+      "-language:postfixOps",
+      "-unchecked",
+      "-Xlint",
+      "-Xlint:missing-interpolator",
+      "-Yno-adapted-args",
+      "-Ywarn-unused",
+      "-Ywarn-dead-code",
+      "-Ywarn-numeric-widen",
+      "-Ywarn-value-discard",
+      "-Xfuture",
+      "-Ywarn-unused-import"
+    )
   )
-).enablePlugins(PlayScala).dependsOn(framework)
-
-lazy val framework = (project in file("framework")).settings(
-  scalaVersion := scalaV,
-  libraryDependencies ++= Seq(
-    "com.lihaoyi" %% "scalatags" % "0.6.1"
-  )
-).enablePlugins(PlayScala)
 
 // loads the Play project at sbt startup
 onLoad in Global := (Command.process("project examples", _: State)) compose (onLoad in Global).value
 
-// for Eclipse users
-EclipseKeys.skipParents in ThisBuild := false
+lazy val examples = project("examples", appVersion).enablePlugins(PlayScala).dependsOn(framework)
 
-
-fork in run := true
+lazy val framework = project("framework", appVersion)
+  .settings(
+    libraryDependencies ++= Seq(
+      "com.lihaoyi" %% "scalatags" % "0.6.1",
+      jdbc,
+      "mysql" % "mysql-connector-java" % "5.1.36"
+    )
+  )

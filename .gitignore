@@ -1,5 +1,65 @@
-# Ignore Play! working directory #
+
+# Created by https://www.gitignore.io/api/scala,sbt,playframework,intellij,eclipse
+
+### Eclipse ###
+
+.metadata
 bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+# Eclipse Core
+.project
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# PyDev specific (Python IDE for Eclipse)
+*.pydevproject
+
+# CDT-specific (C/C++ Development Tooling)
+.cproject
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+# Java annotation processor (APT)
+.factorypath
+
+# PDT-specific (PHP Development Tools)
+.buildpath
+
+# sbteclipse plugin
+.target
+
+# Tern plugin
+.tern-project
+
+# TeXlipse plugin
+.texlipse
+
+# STS (Spring Tool Suite)
+.springBeans
+
+# Code Recommenders
+.recommenders/
+
+### Intellij ###
+.idea/
+*.iml
+
+### PlayFramework ###
+# Ignore Play! working directory #
 /db
 .eclipse
 /lib/
@@ -7,13 +67,45 @@ bin/
 /modules
 /project/target
 /target
-tmp/
 test-result
 server.pid
 *.eml
 /dist/
 .cache
 
-.idea/
+### SBT ###
+# Simple Build Tool
+# http://www.scala-sbt.org/release/docs/Getting-Started/Directories.html#configuring-version-control
+
 target/
-logs/
+lib_managed/
+src_managed/
+project/boot/
+.history
+
+### Scala ###
+*.class
+*.log
+
+# sbt specific
+.lib/
+dist/*
+project/plugins/project/
+
+# Scala-IDE specific
+.scala_dependencies
+.worksheet
+
+# ENSIME specific
+.ensime_cache/
+.ensime
+
+# SBT Wrapper
+sbt-dist/*
+sbt.bat
+sbt
+
+#RUNNING_PID
+RUNNING_PID
+
+# End of https://www.gitignore.io/api/scala,sbt,playframework,intellij,eclipse

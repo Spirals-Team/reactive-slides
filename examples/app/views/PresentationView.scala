@@ -1,130 +1,37 @@
 package views
 
-object IndexView {
+object PresentationView {
+  import dsl.Dsl._
   import scalatags.Text.all._
-  import scalatags.Text.tags2.section
-  import scalatags.Text.tags2.title
-  import scalatags._
-  import dsl.Dsl
 
-  // ---------------------------------------------------------------------------------------
-  // ----------------------------------- Définition du DSL - Début -----------------------------------
-  // ---------------------------------------------------------------------------------------
+  /**
+    * C'est à l'intérieur de cette fonction que l'on définie notre présentation, ci-dessous se trouve une présentation exemple
+    * @param title Le titre de la page de la présentation, ce sera le texte écrit sur l'onglet de la page web de la présentation et sur la fenetre du navigateur si l'onglet est selectionné
+    * @param theme Le thème utilisé pour la présentation, il s'agit des thèmes proposés par Reveal.js (ex: "black", "white", "league", "beige", "sky"...)
+    *              Liste complète des thèmes : https://github.com/hakimel/reveal.js#theming
+    * @return
+    */
+  def apply(title: String, description: String, author: String, theme: String) = {
+    presentation(title, description, author, theme,
+      slide(
+        title3("Are You Paying Attention ?"),
+        generateQuestionQRCode("Question1")
+      ),
 
-  def presentationTitle = "reveal.js - The HTML Presentation Framework"
-  def presentation(titleText: String, theme: String, array: scalatags.Text.Modifier*) = // Ne pas renommer array en content, provoque un bug
-    Seq(
-      html(
-        head(
-          meta(charset := "utf-8"),
+      slide(
+        title3("Which device are you using ?"),
+        generateQuestionQRCode("Question2")
+      ),
 
-          title(titleText),
+      slide(
+        title3("Are You Paying Attention ?"),
+        displayGraph("Question1", "pie")
+      ),
 
-          meta(name := "description", content := "A framework for easily creating beautiful presentations using HTML"),
-          meta(name := "author", content := "Author"),
-
-          meta(name := "apple-mobile-web-app-capable", content := "yes"),
-          meta(name := "apple-mobile-web-app-status-bar-style", content := "black-translucent"),
-
-          meta(name := "viewport", content := "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"),
-
-          link(rel := "stylesheet", href := "assets/stylesheets/reveal.css"),
-          link(rel := "stylesheet", href := "assets/stylesheets/theme/"+theme+".css", id := "theme"),
-
-          link(rel := "stylesheet", href := "assets/stylesheets/lib/zenburn.css")
-        ), // Fermeture head
-
-        body(
-          div(`class` := "reveal",
-            div(`class` := "slides", array)
-          ),
-          script(src := "assets/javascripts/lib/head.min.js")
-        ), // Fermeture body
-        script(src := "assets/javascripts/reveal.js")
-      ), // Fermeture html
-      script("Reveal.initialize({controls:true,progress:true,history:true,center:true,transition:'slide',dependencies:[{ src : 'lib/js/classList.js', condition: function() { return !document.body.classList; }},{ src : 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad();}},{ src: 'plugin/zoom-js/zoom.js',async:true},{ src : 'plugin/notes/notes.js', async:true},{src:'plugin/markdown/marked.js', condition : function(){ return !!document.querySelector('[data-markdown]'); }}, { src:'plugin/markdown/markdown.js', condition: function(){ return !!document.querySelector('[data-markdown]');}}]});")
-    ) // Fermeture Seq
-
-  def slide(content: scalatags.Text.Modifier*) =
-    section(content)
-
-  def title1(content: scalatags.Text.Modifier*) =
-    h1(content)
-
-  def title2(content: scalatags.Text.Modifier*) =
-    h2(content)
-
-  def title3(content: scalatags.Text.Modifier*) =
-    h3(content)
-
-  def title4(content: scalatags.Text.Modifier*) =
-    h4(content)
-
-  def title5(content: scalatags.Text.Modifier*) =
-    h5(content)
-
-  def textLine(content: scalatags.Text.Modifier*) =
-    p(content)
-
-  def textLineFragment(content: scalatags.Text.Modifier*) =
-    p(attr("class"):="fragment",content)
-
-  def textFragment(content: scalatags.Text.Modifier*) =
-    span(attr("class"):="fragment", content)
-
-  def italic(content: String) =
-    em(content)
-
-  def bold(content: String) =
-    strong(content)
-
-  def emptyLine =
-    br
-
-  def unorderedList(content: scalatags.Text.Modifier*) =
-    ul(content)
-
-  def orderedList(content: scalatags.Text.Modifier*) =
-    ol(content)
-
-  def listItem(content: scalatags.Text.Modifier*) =
-    li(content)
-
-  def alink(content: scalatags.Text.Modifier*) =
-    a(content)
-
-  def tableRow(content: scalatags.Text.Modifier*) =
-    tr(content)
-
-  def tableHead(content: scalatags.Text.Modifier*) =
-    th(content)
-
-  def tableBox(content: scalatags.Text.Modifier*) =
-    td(content)
-
-  def linkURL(content: String) =
-    attr("href"):=content
-
-  def source(content: String) =
-    attr("src"):=content
-
-  def codeQuote(content: String) =
-    pre(
-      code(
-        attr("data-trim"):="data-trim",
-        attr("data-noescape"):="data-noescape",
-        attr("class"):="hljs",
-        content
-      )
-    )
-
-  // ---------------------------------------------------------------------------------------
-  // ----------------------------------- Définition du DSL - Fin -----------------------------------
-  // ---------------------------------------------------------------------------------------
-
-
-  def apply(title: String) = {
-    presentation(title, "black",
+      slide(
+        title3("Which device are you using ?"),
+        displayGraph("Question2", "pie")
+      ),
 
       slide(
         title1("Reveal.js"),
@@ -147,15 +54,17 @@ object IndexView {
             attr("enabled"):="enabled",
             attr("href"):="#",
             img(
-              attr("alt"):="Down arrow",
-              source("https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png")
+              altAttr("Down arrow"),
+              sourceAttr("https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png")
             )
           )
         ),
+
         slide(
           title2("Basement level 1"),
           textLine("Nested slides are useful for adding additional detail underneath a high level horizontal slide.")
         ),
+
         slide(
           title2("Basement level 2"),
           textLine("That's it, time to go back up."),
@@ -163,9 +72,9 @@ object IndexView {
           alink(
             linkURL("#/2"),
             img(
-              attr("alt"):="Up arrow",
+              altAttr("Up arrow"),
               attr("style"):="transform: rotate(180deg);",
-              source("https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png")
+              sourceAttr("https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png")
             )
           )
         )
@@ -278,16 +187,18 @@ object IndexView {
             attr("class"):=" enabled",
             linkURL("#"),
             img(
-              attr("alt"):="Down arrow",
+              altAttr("Down arrow"),
               attr("src"):="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png"
             )
           )
         ),
+
         slide(
           attr("data-background"):="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png",
           title2("Image Backgrounds"),
           codeQuote("<section data-background=\"image.png\">")
         ),
+
         slide(
           attr("data-background"):="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png",
           attr("data-background-repeat"):="repeat",
@@ -295,6 +206,7 @@ object IndexView {
           title2("Tiled Backgrounds"),
           codeQuote("<section data-background=\"image.png\" data-background-repeat=\"repeat\" data-background-size=\"100px\">")
         ),
+
         slide(
           attr("data-background-video"):="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm",
           div(
@@ -303,6 +215,7 @@ object IndexView {
             codeQuote("<section data-background-video=\"video.mp4,video.webm\">")
           )
         ),
+
         slide(
           attr("data-background"):="http://i.giphy.com/90F8aUepslB84.gif",
           title2("... and GIFs!")
@@ -329,7 +242,7 @@ object IndexView {
 
       slide(
         title2("Pretty Code"),
-        codeQuote(""),
+        codeQuote("function linkify( selector ) {\n\tif( supports3DTransforms ) {\n\t\tvar nodes = document.querySelectorAll( selector );\n\t}\n}"),
         textLine(
           "Code syntax highlighting courtesy of ",
           alink(
@@ -388,7 +301,7 @@ object IndexView {
       slide(
         title2("Clever Quotes"),
         textLine("These guys come in two forms, inline: \"The nice thing about standards is that there are so many to choose from\" and block:"),
-        blockquote("\"For years has been a theory that millions of monkeys typing at random on millions of of typewriters would reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.\"")
+        blockquote("\"For years there has been a theory that millions of monkeys typing at random on millions of of typewriters would reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.\"")
       ),
 
       slide(
@@ -436,6 +349,7 @@ object IndexView {
       ),
 
       slide(
+        attr("style"):="text-align: left;",
         title1("THE END"),
         textLine(
           "- ",
@@ -448,127 +362,66 @@ object IndexView {
       ),
 
       slide(
-
         slide(
-
           title2("Collaborator Number 1"),
-
           emptyLine,
-
           title3("Nicolas Vasseur", alink(attr("href") := "https://github.com/Tiplok", " -Tiplok")),
-
           textLine(small("Master 2 e-services"))
-
         ),
-
         slide(title2("Who Am I ?"),
-
           textLine("My name is Nicolas, I'm 22 and I live in Tourcoing, Northern France.")
-
         ),
-
         slide(title2("What's my story ?"),
-
           textLine("I was born in Tourcoing, city in the north of France. I always live around this place.")
-
         ),
-
         slide(title2("Academic background"),
-
           unorderedList(
-
             listItem("2012 : Bachelor of Engineering Science"),
-
             listItem("2014 : Technology University Degree"),
-
             listItem("2015 : Licence Degree in Computer Science"),
-
             listItem("Currently : Master 2 in electronic services")
-
           )
-
         )
-
       ),
 
       slide(
-
         slide(title2("Collaborator Number 2"),
-
           emptyLine,
-
           title3("Rahal Badr", alink(attr("href") := "https://github.com/rbadr", " -rbadr")),
-
           textLine(small("Master 2 IAGL : Infrastructures Applicatives et Génie Logiciel"))
-
         ),
-
         slide(title2("Who Am I ?"),
-
           textLine("My name is Badr, I'm 24 years old and I Live in Lille, Northern France.")
-
         ),
-
         slide(title2("What's my story ?"),
-
           textLine("I was born in Rabat, the capital of Morocco. I lived there untill my 22nd birthday.")
-
         ),
-
         slide(title2("Why did I leave ?"),
-
           textLine(
-
             """I got my Licence degree in Computer science and mathematics, then I decided it was time to look for new opportunities abroad.
-
-            I lived for half a year in Reims, then I moved to Paris for a 5 months internship, and now here I am in Lille.""")
-
+              |I lived for half a year in Reims, then I moved to Paris for a 5 months internship, and now here I am in Lille.""".stripMargin)
         ),
-
         slide(title2("Academic Background"),
-
           unorderedList(
-
             listItem("2010 : Bachelor in mathematical science, Rabat-Morocco."),
-
             listItem("2014 : Licence Degree in mathematics and computer science, Rabat-Morocco."),
-
             listItem("2015 : Master 1 Degree in computer science, Reims-France."),
-
             listItem("Currently : Master 2 in software engineering, Lille-France")
-
           )
-
         ),
-
         slide(title2("What do I love in life?"),
-
           textLine(
-
             """I love traveling and meeting new people from different cultures, that's the reason I joined an international association when I moved to Lille,
-
-            I wanted to meet new friends from all over europe. I love discovering new cultures.""")
-
+              |I wanted to meet new friends from all over europe. I love discovering new cultures.""".stripMargin)
         )
-
       ),
-
       slide(attr("data-background") := "http://i.giphy.com/90F8aUepslB84.gif",
-
         title2("What a DUO!")
-
       ),
-
       slide(css("text-align") := "left",
-
         title1("THE END"),
-
         textLine(alink(attr("href") := "https://github.com/rbadr/PFENicolas-Badr", "Our Repo in Github"))
-
       )
-
-    ) // Fermeture presentation
-
-  } // Fermeture def apply
-
-} // Fermeture object IndexView
+    )
+  }
+}
