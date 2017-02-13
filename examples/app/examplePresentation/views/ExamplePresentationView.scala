@@ -1,4 +1,4 @@
-package views.examplePresentation
+package examplePresentation.views
 
 object ExamplePresentationView {
 
