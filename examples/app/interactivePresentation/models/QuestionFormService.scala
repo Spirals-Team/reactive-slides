@@ -1,7 +1,8 @@
-package models
+package interactivePresentation.models
 
 import java.io.{File, PrintWriter}
 import javax.inject.Inject
+
 import play.api.db.Database
 
 /**

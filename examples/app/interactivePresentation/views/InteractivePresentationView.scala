@@ -1,4 +1,4 @@
-package views.interactivePresentation
+package interactivePresentation.views
 
 object InteractivePresentationView {
 

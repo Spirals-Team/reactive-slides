@@ -1,4 +1,4 @@
-package views
+package reactiveSlides.views
 
 import dsl.Dsl._
 

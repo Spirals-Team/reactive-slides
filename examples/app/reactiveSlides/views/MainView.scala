@@ -1,4 +1,4 @@
-package views
+package reactiveSlides.views
 
 object MainView {
   import scalatags.Text.all._

@@ -1,6 +1,6 @@
-package views.interactivePresentation
+package interactivePresentation.views
 
-object Question1View {
+object Question2View {
 
   import dsl.Dsl._
 
@@ -9,7 +9,7 @@ object Question1View {
   def apply(title: String, description: String, author: String, theme: String) = {
     presentation(title, description, author, theme,
       slide(
-        surveyOf2("Question1", 2, "Are You Paying Attention ?","Yes", "No")
+        surveyOf3("Question2", "Which device are you using ?","Smartphone", "Tablet", "Laptop")
       )
     )
   }

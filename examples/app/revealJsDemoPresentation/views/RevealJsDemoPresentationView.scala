@@ -1,4 +1,4 @@
-package views.revealJsDemoPresentation
+package revealJsDemoPresentation.views
 
 object RevealJsDemoPresentationView {
   import dsl.Dsl._
