@@ -14,6 +14,7 @@ GET     /InteractiveDemo                            @interactivePresentation.con
 GET     /Question1                                  @interactivePresentation.controllers.interactivePresentationController.showQuestion1
 GET     /Question2                                  @interactivePresentation.controllers.interactivePresentationController.showQuestion2
 POST    /SubmitAnswer                               @interactivePresentation.controllers.interactivePresentationController.saveAnswer
+GET    /resetAnswers                               @interactivePresentation.controllers.interactivePresentationController.resetAnswers
 
 # The example Presentation routes
 GET     /ExampleDemo                                @examplePresentation.controllers.examplePresentationController.displayExampleDemo

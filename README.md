@@ -12,7 +12,16 @@ To start, clone the project.
 To build the project and run the presentation example , follow these steps :
 
 1. Ensure that [sbt](http://www.scala-sbt.org/) is installed. This provides the platform on which the build tooling runs. 
-2. Setup a database :
+2. Setup a database and create a table named `question_reponse`, you can use this query :
+
+ ```sql
+CREATE TABLE IF NOT EXISTS question_reponse (
+    PK_question_reponse int(11) NOT NULL AUTO_INCREMENT,
+    question varchar(100) NOT NULL,
+    reponse varchar(100) NOT NULL,
+    PRIMARY KEY (PK_question_reponse)
+);
+ ```
 For the example presentation, we used a local MySQL server. The databasePort by default is **3306** .
 
 To customize it, you need to browse the `application.conf` file and save your default database configuration using MySQL database engine or any other engine.
