@@ -2,6 +2,8 @@ package interactivePresentation.models
 
 import java.io.{File, PrintWriter}
 import javax.inject.Inject
+import scala.io.Source
+import java.io._
 
 import play.api.db.Database
 
@@ -15,6 +17,9 @@ case class QuestionData(question: String,
 @javax.inject.Singleton
 class QuestionFormService @Inject()(db: Database){
 
+  /**
+    * Extract the answer's results .
+    */
   def extractAnswer(question: String, response: String, number: String) = {
     val conn = db.getConnection()
     try {
@@ -48,5 +53,29 @@ class QuestionFormService @Inject()(db: Database){
     } finally {
       conn.close()
     }
+  }
+
+  /**
+    * Reset the database
+    */
+  def resetDatabase() = {
+    val conn = db.getConnection()
+    try {
+      val stmt = conn.createStatement
+
+      // reset database
+      val query = "truncate table question_reponse"
+      stmt.executeUpdate(query)
+
+    } finally {
+      conn.close()
+    }
+
+    val folder = new File("examples/public/charts")
+    folder.listFiles().foreach(file => {
+      val pw = new PrintWriter(file)
+      pw.write("")
+      pw.close()
+    })
   }
 }

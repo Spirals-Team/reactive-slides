@@ -3,7 +3,7 @@ package interactivePresentation.controllers
 import javax.inject.Inject
 
 import interactivePresentation.models._
-import interactivePresentation.views.{InteractivePresentationView, Question1View, Question2View, SubmissionConfirmationView}
+import interactivePresentation.views._
 import play.api.data.Forms._
 import play.api.data._
 import play.api.http._
@@ -55,5 +55,13 @@ class interactivePresentationController @Inject()(questionFormService: QuestionF
     val questionData = questionForm.bindFromRequest.get
     questionFormService.extractAnswer(questionData.question, questionData.response, questionData.number)
     Ok(MainView(SubmissionConfirmationView(presentationTitle, description, author, theme)).toString).withHeaders(CONTENT_TYPE -> ContentTypes.HTML)
+  }
+
+  /**
+    * Reset the database.
+    */
+  def resetAnswers = Action { implicit request =>
+    questionFormService.resetDatabase()
+    Ok(MainView(ResetDatabaseConfirmationView(presentationTitle, description, author, theme)).toString).withHeaders(CONTENT_TYPE -> ContentTypes.HTML)
   }
 }
